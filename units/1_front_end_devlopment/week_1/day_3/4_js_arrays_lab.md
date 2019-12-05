@@ -179,12 +179,6 @@ Exercise 15:
 console.log('Exercise 15 Result:\n', total)
 ```
 
-## Solution
-
-Try not to peek!
-
-[Solution Repl](https://repl.it/@jim_clark/JS-Arrays-Lab)
-
 ## Additional Resources
 
 - [MDN Arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)
