@@ -1,6 +1,4 @@
-
 ![General Assembly](https://logo.clearbit.com/generalassemb.ly/?size=256)
-
 
 # Avengers, Assemble! (And Other Objects)
 
@@ -18,7 +16,12 @@
 
 ## Getting Started
 
-1. In today's `student_labs` folder, create a file called `the_avengers.js`
+1. `mkdir student_labs && cd student_labs`
+2. create a file named `avengers.js` and do your work for this lab inside that file
+
+or
+
+1. Create a new repl.it and name `Avengers Lab`
 
 ---
 
@@ -228,8 +231,6 @@ It's up to you how you model this data and what data structures you use, there's
 
 ## Hungry for More? - Extra
 
-1. Want to do more combined datatype drills? Try out [this extra lab](3_extra_methods_lab.md).
-1. If you didn't complete the object-ception lab, go back and complete it!
 1. Practice your HTML and CSS by trying to recreate the [google homepage](https://www.google.com/)
    - Try recreating the [search view](https://www.google.com/search?ei=htwXXNXTKs6C_wSxm6rgBA&q=hello+world&oq=hello+world) as well!
 1. Sign up for [CodeWars](https://www.codewars.com/) or [HackerRank](https://www.hackerrank.com/) if you haven't already and try out some javascript challenges there!
