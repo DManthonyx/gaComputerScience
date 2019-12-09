@@ -1,0 +1,56 @@
+/* =========== CONTAINER =========== */
+.container {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* =========== MAIN CONTENT =========== */
+.main-content {
+  width: 80%;
+}
+.main-content > div {
+  margin-bottom: 20px;
+}
+.banner > img {
+  width: 100%;
+}
+.categories, .site-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.categories > img {
+  width: 31%;
+}
+.site-info > img {
+  width: 48%;
+}
+
+/* =========== SIDEBAR =========== */
+.sidebar {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.sidebar > img {
+  width: 25%;
+  opacity: 0.5;
+}
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+.sidebar a {
+  text-decoration: none;
+  color: #ccc;
+  font-family: sans-serif;
+}
+.cat-nav a {
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+.site-nav a {
+  text-transform: capitalize;
+}

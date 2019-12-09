@@ -1,5 +1,7 @@
 ![General Assembly](https://logo.clearbit.com/generalassemb.ly/?size=256)
 
+[View as presentation](https://presentations.generalassemb.ly/e7127abe8a22ddee6fea29e9bf0c60d5#/)
+
 # Combining data types and Callbacks
 
 ## Lesson Objectives

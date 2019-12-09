@@ -1,5 +1,7 @@
 ![General Assembly](https://logo.clearbit.com/generalassemb.ly/?size=256)
 
+[View as presentation](https://presentations.generalassemb.ly/38d46b13f00de87e87b0369ead88daaa#/)
+
 # Object-Ception
 
 ## Lesson objectives
