@@ -18,13 +18,18 @@ Objects, objects, and objects, oh my!
 
 ## Getting Started
 
-1. Inside today's `student_labs` folder, create a file named `solar_system.js` and do your work for this lab inside that file
+1. `mkdir student_labs && cd student_labs`
+2. create a file named `solar_system.js` and do your work for this lab inside that file
+
+or
+
+1. Create a new repl.it and name `solar System Lab`
 
 ---
 
 ## Objects Refresher
 
-Remember, objects are a type of **data structure** that we use to store data with greater specificity than arrays. The greater specificity is achieved becaue objects hold what are called **key-value pairs**. Need a longer reminder of what they are? Look back at the [instructor notes on objects](/unit_1/w01d05/instructor_notes/2.%20Objects.md)
+Remember, objects are a type of **data structure** that we use to store data with greater specificity than arrays. The greater specificity is achieved becaue objects hold what are called **key-value pairs**. Need a longer reminder of what they are? Look back at the [objects](/units/1_front_end_devlopment/week_1/day_4/1_js_objects.md)
 
 Before we jump right into nested objects, let's warm-up with a few simple object reps
 
