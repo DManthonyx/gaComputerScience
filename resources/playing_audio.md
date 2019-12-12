@@ -12,7 +12,7 @@ Playing audio in the browser is straightforward thanks to:
 
 ### Example
 
-Here's the [link to the repl shown below](https://repl.it/@jim_clark/Playing-Audio-in-the-Browser):
+Here's the [link to the repl shown below](https://repl.it/@gregsantos/Playing-Audio-in-the-Browser):
 
 <img src="https://i.imgur.com/MI0yTHs.png">
 

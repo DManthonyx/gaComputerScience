@@ -32,3 +32,9 @@ Ask yourself:
 
 For an arrow function ask yourself:
 **What is this where the arrow function is defined?**
+
+### Further Study
+
+- https://dmitripavlutin.com/gentle-explanation-of-this-in-javascript/
+- https://www.w3schools.com/js/js_this.asp
+- https://tylermcginnis.com/this-keyword-call-apply-bind-javascript/

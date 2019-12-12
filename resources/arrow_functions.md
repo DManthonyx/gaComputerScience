@@ -1,6 +1,6 @@
 <img src="https://i.imgur.com/gGKrqF5.png">
 
-[Click here to view as a presentation](https://gist.github.com/gregsantos/f6c82e4add01e4f69012079afe1805a9)
+[Click here to view as a presentation](https://presentations.generalassemb.ly/f6c82e4add01e4f69012079afe1805a9#/)
 
 ---
 
