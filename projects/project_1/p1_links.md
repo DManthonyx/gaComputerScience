@@ -10,7 +10,7 @@
 | Zane Finucane-Shook |   https://git.generalassemb.ly/ihavehands/simon2.0   |     https://goofy-brown-2b105a.netlify.com/     |
 | Blake Adeyemi-John  |     https://git.generalassemb.ly/Blake/Project1      |        https://wardcardgame.netlify.com/        |
 |     Jason Zubia     |         https://github.com/shifujz/war-game          |       https://shifujz.github.io/war-game/       |
-|    Jeff Enriquez    | https://git.generalassemb.ly/Jeff-Enriquez/Monopoly  |         https://bitajune.github.io/War/         |
+|    Jeff Enriquez    | https://git.generalassemb.ly/Jeff-Enriquez/Monopoly  |     https://sleepy-cray-d4bb81.netlify.com/     |
 |     Sophia Xiao     | https://github.com/xxiao77/MineSweeper/tree/gh-pages |     https://xxiao77.github.io/MineSweeper/      |
 |      Paul Tae       |         https://github.com/ptds106/project_1         |  https://gallant-heyrovsky-190641.netlify.com/  |
 |     Sophia Sahn     |          https://github.com/sophiasanh/war           |        https://sophiasanh.github.io/war/        |
