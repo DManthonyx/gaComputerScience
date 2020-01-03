@@ -1,0 +1,15 @@
+{
+  "name": "car-module-hw",
+  "version": "1.0.0",
+  "description": "- your task is to make a module  (`Car.js`) that defines a car – with both properties and methods (functions) – and export it as a module to an `index.js` file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}
