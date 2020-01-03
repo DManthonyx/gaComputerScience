@@ -1,4 +1,4 @@
-[click to view as a presentation]()
+[click to view as a presentation](https://presentations.generalassemb.ly/7b98893a38a0993d2b1d0af46328169b#/1)
 
 <link href="https://gist.githubusercontent.com/jim-clark/6919052ab15de680c120907d223c31b5/raw/9eedb5e3c01352b9ccda7264227f253be56a08b7/slide.css">
 
