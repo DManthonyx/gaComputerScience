@@ -39,8 +39,6 @@
 
 <br>
 
-- Get inside of today's folder in the class repo, then:
-
 ```
 $ mkdir first-node
 $ cd first-node
@@ -66,7 +64,9 @@ $ code .
 
 - Created in 2009 by Ryan Dahl with Joyent, Inc.
 
-- Uses the same _V8 JavaScript Engine_ used in the Chrome browser to compile JS programs into machine code.
+- Node.js is a Javascript runtime environment built on Chrome’s V8 JavaScript engine.
+
+- Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
 
 ---
 
@@ -84,26 +84,11 @@ $ code .
 
 <br>
 
-- Node is an open source project governed by the [Node.js Foundation](https://foundation.nodejs.org/) with board representation from companies such as:
-  - PayPal
-  - Microsoft
-  - Google
-  - GoDaddy
-  - IBM
-  - Red Hat
-  - Intel
-
----
-
-#### What is Node.js?
-
-<br>
-
 - Node is very "lightweight", i.e., only low-level "core" modules for networking, filesystem access, etc. are baked-in.
 
 - Node's functionality is extended via open source libraries called packages.
 
-- Node's package ecosystem is the largest open source ecosystem in the world.
+- Node package ecosystem (npm) is the largest ecosystem of open source libraries in the entire world.
 
 ---
 
@@ -160,18 +145,10 @@ undefined
 #### Why the Enthusiasm for Node?
 
 - The improvements in server performance and developer productivity result in **businesses saving money**.
-
-- Businesses saving money results in **wide adoption**:
+- Businesses saving money results in **wide adoption**
+- Wide adoption of Node.js results in strong demand for Node developers!
 
 <img src="https://i.imgur.com/5nvUBa3.jpg">
-
----
-
-#### Why the Enthusiasm for Node?
-
-<br>
-
-<p>Most importantly, wide adoption of Node.js results in strong demand for Node developers!</p>
 
 ---
 
@@ -192,6 +169,9 @@ undefined
 - Node's **Asynchronous / Event-driven** design enables<br>**non-blocking** Input/Output:
 
 <img src="https://i.imgur.com/ARbweHg.jpg" style="display:block;margin:auto">
+<p/>
+
+- https://stackoverflow.com/questions/10570246/what-is-non-blocking-or-asynchronous-i-o-in-node-js
 
 ---
 
@@ -303,7 +283,7 @@ fs.writeFile('./hello.txt', 'Hello!', function() {
 
 <br>
 
-- Okay, now let's see how we can create our own modules.
+- Okay, now let's see how we can create our own modules. [Node Modules Lesson](https://git.generalassemb.ly/SEI/sei-dt-69/blob/master/units/2_full_stack_dev/week_0/day_2/1_node_modules.md)
 
 - In a Node application, **every** JavaScript file is a module!
 
