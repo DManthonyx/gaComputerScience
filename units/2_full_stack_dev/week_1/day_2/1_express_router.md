@@ -67,9 +67,9 @@
 
 -   Let's install it:
 
-        	```sh
-        	$ npm install -g express-generator
-        	```
+        ```sh
+        $ npm install -g express-generator
+        ```
 
 -   `express-generator` is a CLI that can be run from anywhere, that's why we install it using the global `-g` flag.
 
