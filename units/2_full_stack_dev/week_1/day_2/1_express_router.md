@@ -1,6 +1,4 @@
-This presentation can be viewed [here]()
-
----
+## This presentation can be viewed [here](https://presentations.generalassemb.ly/07f9b2f08932561aa03cd2c17d38783b#/1)
 
 ![](https://i.imgur.com/vUOu9NW.jpg)
 <br>
@@ -13,7 +11,7 @@ This presentation can be viewed [here]()
 
 <br>
 
-- Students Will Be Able To: - Use the Express Generator to Scaffold a Skeleton App - Implement Best Practice Routing - Organize App Logic Into Controllers
+-   Students Will Be Able To: - Use the Express Generator to Scaffold a Skeleton App - Implement Best Practice Routing - Organize App Logic Into Controllers
 
 ---
 
@@ -21,15 +19,15 @@ This presentation can be viewed [here]()
 
 <br>
 
-- Setup
-- Express Generator
-- MVC Code Organization
-- Best Practice Routing
-- To-Do Refactor
-- Controllers
-- MVC Organization Revisited
-- URL/Route Parameters
-- Adding Show a To-Do Functionality
+-   Setup
+-   Express Generator
+-   MVC Code Organization
+-   Best Practice Routing
+-   To-Do Refactor
+-   Controllers
+-   MVC Organization Revisited
+-   URL/Route Parameters
+-   Adding Show a To-Do Functionality
 
 ---
 
@@ -37,11 +35,7 @@ This presentation can be viewed [here]()
 
 <br>
 
-- To get ready for this lesson, simply `cd` into today's folder for the class repo.
-
----
-
-### <span style="text-transform:lowercase">express-generator</span>
+-   To get ready for this lesson, simply `cd` into today's folder for the class repo.
 
 ---
 
@@ -49,21 +43,11 @@ This presentation can be viewed [here]()
 
 <br>
 
-- Okay, so we've had big fun getting an Express app up and running from scratch.
+-   Okay, so we've had big fun getting an Express app up and running from scratch.
 
-- We defined some basic routes and rendered a couple of views using the EJS view engine.
+-   We defined some basic routes and rendered a couple of views using the EJS view engine.
 
-- Later today we're going to learn about middleware and see how we can create and update data.
-
----
-
-#### <span style="text-transform:lowercase">express-generator</span>
-
-<br>
-
-- In this lesson, the first thing we'll take a look at is a popular tool - `express-generator`.
-
-- `express-generator` creates a "skeleton" Express app that: - Separates the HTTP server code from our web app's logic. - Has best practice routing implemented. - Is configured to serve static assets from a `public` folder. - If we specify it, will configure the EJS view engine. - Has error handling configured. - Has key middleware configured and mounted by default.
+-   Later today we're going to learn about middleware and see how we can create and update data.
 
 ---
 
@@ -71,13 +55,23 @@ This presentation can be viewed [here]()
 
 <br>
 
-- Let's install it:
+-   In this lesson, the first thing we'll take a look at is a popular tool - `express-generator`.
 
-      	```sh
-      	$ npm install -g express-generator
-      	```
+-   `express-generator` creates a "skeleton" Express app that: - Separates the HTTP server code from our web app's logic. - Has best practice routing implemented. - Is configured to serve static assets from a `public` folder. - If we specify it, will configure the EJS view engine. - Has error handling configured. - Has key middleware configured and mounted by default.
 
-- `express-generator` is a CLI that can be run from anywhere, that's why we install it using the global `-g` flag.
+---
+
+#### <span style="text-transform:lowercase">express-generator</span>
+
+<br>
+
+-   Let's install it:
+
+        	```sh
+        	$ npm install -g express-generator
+        	```
+
+-   `express-generator` is a CLI that can be run from anywhere, that's why we install it using the global `-g` flag.
 
 ---
 
@@ -112,46 +106,46 @@ Options:
 
 <br>
 
-- We will use the `-e` option to use the **ejs** template engine instead of **pug** (the default).
+-   We will use the `-e` option to use the **ejs** template engine instead of **pug** (the default).
 
-- From your new app's parent directory:
+-   From your new app's parent directory:
 
-      	```sh
-      	$ express -e express-todos
-      	$ cd express-todos
-      	```
+```sh
+$ express -e express-todos
+$ cd express-todos
+```
 
-- We then install the **node modules** that are listed in the `package.json`:
+-   We then install the **node modules** that are listed in the `package.json`:
 
-      	```sh
-      	$ npm i
-      	```
+```sh
+$ npm i
+```
 
 ---
 
 #### Folder Structure
 
-- Our scaffolded folder structure will look like this:
+-   Our scaffolded folder structure will look like this:
 
-      	```sh
-      	├── app.js
-      	├── bin
-      	│   └── www
-      	├── package.json
-      	├── public
-      	│   ├── images
-      	│   ├── javascripts
-      	│   └── stylesheets
-      	│       └── style.css
-      	├── routes
-      	│   ├── index.js
-      	│   └── users.js
-      	└── views
-      	    ├── error.js
-      	    └── index.js
-      	```
+```sh
+├── app.js
+├── bin
+│   └── www
+├── package.json
+├── public
+│   ├── images
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── routes
+│   ├── index.js
+│   └── users.js
+└── views
+    ├── error.js
+    └── index.js
+```
 
-- Let's explore the above structure in our text editor...
+-   Let's explore the above structure in our text editor...
 
 ---
 
@@ -159,17 +153,17 @@ Options:
 
 <br>
 
-- One option to start the server is to type `npm start`. This will execute the start script specified in _package.json_. However, it doesn't restart the app when there's changes...
+-   One option to start the server is to type `npm start`. This will execute the start script specified in _package.json_. However, it doesn't restart the app when there's changes...
 
-- `nodemon` is still our best option and we can now just type `nodemon` which will use that same `start` script.
+-   `nodemon` is still our best option and we can now just type `nodemon` which will use that same `start` script.
 
 ---
 
 #### Starting the Application
 
-- Browsing to `localhost:3000` greets us with:
+-   Browsing to `localhost:3000` greets us with:
 
-      	<img src="https://i.imgur.com/kHXF4Qg.png">
+<img src="https://i.imgur.com/kHXF4Qg.png">
 
 ---
 
@@ -177,9 +171,9 @@ Options:
 
 <br>
 
-- MERN/MEAN Stack apps often have a client-side file named `app.js` and this could get confusing having two `app.js` files. This is why many developers name their main Express file `server.js`.
+-   MERN/MEAN Stack apps often have a client-side file named `app.js` and this could get confusing having two `app.js` files. This is why many developers name their main Express file `server.js`.
 
-- So let's rename it...
+-   So let's rename it...
 
 ---
 
@@ -187,25 +181,21 @@ Options:
 
 <br>
 
-- First, rename `app.js` to `server.js`.
+-   First, rename `app.js` to `server.js`.
 
-- Then, inside of `bin/www`, change line 7 from:
+-   Then, inside of `bin/www`, change line 7 from:
 
-      	```js
-      	var app = require('../app');
-      	```
+```js
+var app = require("../app");
+```
 
-      	to:
+to:
 
-      	```js
-      	var app = require('../server');
-      	```
+```js
+var app = require("../server");
+```
 
-- That's it, however, you might need to restart `nodemon`.
-
----
-
-### MVC Code Organization
+-   That's it, however, you might need to restart `nodemon`.
 
 ---
 
@@ -213,11 +203,11 @@ Options:
 
 <br>
 
-- Model-View-Controller (MVC) has been a proven approach for successfully organizing code for decades.
+-   Model-View-Controller (MVC) has been a proven approach for successfully organizing code for decades.
 
-- In fact, many web frameworks such as Ruby on Rails, ASP.net, Spring MVC (Java), and others implement the MVC architectural pattern.
+-   In fact, many web frameworks such as Ruby on Rails, ASP.net, Spring MVC (Java), and others implement the MVC architectural pattern.
 
-- Express on the other hand, just like it states on its landing page, is _unopinionated_. That means we are free to structure and organize our Express apps anyway we please.
+-   Express on the other hand, just like it states on its landing page, is _unopinionated_. That means we are free to structure and organize our Express apps anyway we please.
 
 ---
 
@@ -225,39 +215,25 @@ Options:
 
 <br>
 
-- However, since MVC is a proven pattern that works, most Express developers use MVC to organize their Express applications - so we will too :)
+-   However, since MVC is a proven pattern that works, most Express developers use MVC to organize their Express applications - so we will too :)
 
-- Express generator has already organized the view templates into a `views` folder.
+-   Express generator has already organized the view templates into a `views` folder.
 
-- Let's make folders to hold our models and controllers:
+-   Let's make folders to hold our models and controllers:
 
-      	```sh
-      	$ mkdir models controllers
-      	```
+```sh
+$ mkdir models controllers
+```
 
 ---
 
 ### Best Practice Routing
 
----
-
-#### Best Practice Routing
-
 <br>
 
-- In our `first-express` app, we used the `app.get` method to define routes.
+-   In our `first-express` app, we used the `app.get` method to define routes.
 
-- Although it works, the better practice is to: - Use Express `router` objects to organize related routes, for example, routes dedicated to a data resource such as `todos`. - Create each `router` in its own module from which it is exported. - `require` the exported `router` inside of **server.js**. - Mount the `router` object in the request pipeline (`route` objects are also middleware functions).
-
----
-
-#### Best Practice Routing
-
-<br>
-
-- The `Router` objects can provide more flexible and powerful routing in complex apps.
-
-- `Router` objects are actually mini-Express apps! They can even have their own middleware.
+-   Although it works, the better practice is to: - Use Express `router` objects to organize related routes, for example, routes dedicated to a data resource such as `todos`. - Create each `router` in its own module from which it is exported. - `require` the exported `router` inside of **server.js**. - Mount the `router` object in the request pipeline (`route` objects are also middleware functions).
 
 ---
 
@@ -265,9 +241,19 @@ Options:
 
 <br>
 
-- As an example of using this better approach to routing, let's look at how `express-generator` sets up routing...
+-   The `Router` objects can provide more flexible and powerful routing in complex apps.
 
-- First, there's a `routes` folder containing two router modules: - **index.js**: Great for defining general purpose routes, e.g., the root route. - **users.js**: An example of a router dedicated to a _resource_, in this case, _users_.
+-   `Router` objects are actually mini-Express apps! They can even have their own middleware.
+
+---
+
+#### Best Practice Routing
+
+<br>
+
+-   As an example of using this better approach to routing, let's look at how `express-generator` sets up routing...
+
+-   First, there's a `routes` folder containing two router modules: - **index.js**: Great for defining general purpose routes, e.g., the root route. - **users.js**: An example of a router dedicated to a _resource_, in this case, _users_.
 
 ---
 
@@ -275,26 +261,9 @@ Options:
 
 <br>
 
-- Note how routes are defined on those two `router` objects using a `get` method just like we did with `app`:<br>`router.get()` instead of `app.get()`
+-   Note how routes are defined on those two `router` objects using a `get` method just like we did with `app`:<br>`router.get()` instead of `app.get()`
 
-- Each `router` object has one route defined - compare those two routes, notice the _method_ and the _paths_? They're the same - isn't that a problem? Not in this case...
-
----
-
-#### The Express <em>Router</em> Object
-
-<br>
-
-- The two route modules are required on lines 7 & 8 of `server.js`.
-
-- Lastly, the routers are mounted in the middleware pipeline with the `app.use` method on lines 22 & 23:
-
-      	```js
-      	app.use('/', indexRouter);
-      	app.use('/users', usersRouter);
-      	```
-
-- It's **important** to realize that the path in `app.use` is **combined** with the path specified on the router objects...
+-   Each `router` object has one route defined - compare those two routes, notice the _method_ and the _paths_? They're the same - isn't that a problem? Not in this case...
 
 ---
 
@@ -302,18 +271,16 @@ Options:
 
 <br>
 
-- Let's say you have a `router` object that defines a route like this:
+-   The two route modules are required on lines 7 & 8 of `server.js`.
 
-      	```js
-      	router.get('/', function(req, res) {...
-      	```
+-   Lastly, the routers are mounted in the middleware pipeline with the `app.use` method on lines 22 & 23:
 
-      	and mounted like this:
+    ```js
+    app.use("/", indexRouter);
+    app.use("/users", usersRouter);
+    ```
 
-      	```js
-      	app.use('/todos', todoRouter);
-      	```
-      	**What is the actual path of the route?**
+-   It's **important** to realize that the path in `app.use` is **combined** with the path specified on the router objects...
 
 ---
 
@@ -321,18 +288,39 @@ Options:
 
 <br>
 
-- Another example, let's say you have a `router` object that defines a route like this:
+-   Let's say you have a `router` object that defines a route like this:
 
-      	```js
-      	router.get('/today', function(req, res) {...
-      	```
+    ```js
+    router.get('/', (req, res) => {...
+    ```
 
-      	and mounted like this:
+    and mounted like this:
 
-      	```js
-      	app.use('/calendar', calendarRouter);
-      	```
-      	**What is the actual path of that route?**
+    ```js
+    app.use("/todos", todoRouter);
+    ```
+
+    **What is the actual path of the route?**
+
+---
+
+#### The Express <em>Router</em> Object
+
+<br>
+
+-   Another example, let's say you have a `router` object that defines a route like this:
+
+    ```js
+    router.get('/today', (req, res) => {...
+    ```
+
+    and mounted like this:
+
+    ```js
+    app.use("/calendar", calendarRouter);
+    ```
+
+    **What is the actual path of that route?**
 
 ---
 
@@ -340,13 +328,13 @@ Options:
 
 <br>
 
-- We're going to refactor the To-Do code from yesterday to follow best practices...
+-   We're going to refactor the To-Do code from yesterday to follow best practices...
 
-- We'll copy over the **index.ejs** view and put the todos "database" into the `models` folder.
+-   We'll copy over the **index.ejs** view and put the todos "database" into the `models` folder.
 
-- Then we'll incorporate best-practice routing.
+-   Then we'll incorporate best-practice routing.
 
-- Finally, after learning about how to organize code into _controllers_, well, that's what we'll do.
+-   Finally, after learning about how to organize code into _controllers_, well, that's what we'll do.
 
 ---
 
@@ -354,16 +342,16 @@ Options:
 
 <br>
 
-- Create **todos/index.ejs**:
+-   Create **todos/index.ejs**:
 
-      	```sh
-      	$ mkdir views/todos
-      	$ touch views/todos/index.ejs
-      	```
+    ```sh
+    $ mkdir views/todos
+    $ touch views/todos/index.ejs
+    ```
 
-- Add the HTML boilerplate.
+-   Add the HTML boilerplate.
 
-- Update the title to: `<title>Express To-Do</title>`
+-   Update the title to: `<title>Express To-Do</title>`
 
 ---
 
@@ -371,22 +359,20 @@ Options:
 
 <br>
 
-- Here's the EJS from yesterday to copy/paste:
+-   Here's the EJS from yesterday to copy/paste:
 
-      	```html
-      	 <body>
-      	   <h1>Todos</h1>
-      	   <ul>
-      	     <% todos.forEach(function(t) { %>
-      	       <li>
-      	         <%= t.todo %>
-      	           -
-      	         <%= t.done ? 'done' : 'not done' %>
-      	       </li>
-      	     <% }); %>
-      	   </ul>
-      	 </body>
-      	```
+    ```html
+    <body>
+        <h1>Todos</h1>
+        <ul>
+            <% todos.forEach(function(t) { %>
+            <li>
+                <%= t.todo %> - <%= t.done ? 'done' : 'not done' %>
+            </li>
+            <% }); %>
+        </ul>
+    </body>
+    ```
 
 ---
 
@@ -394,15 +380,15 @@ Options:
 
 <br>
 
-- Now let's create and copy over our model.
+-   Now let's create and copy over our model.
 
-- Create **models/todo.js**:
+-   Create **models/todo.js**:
 
-      	```sh
-      	$ touch models/todo.js
-      	```
+    ```sh
+    $ touch models/todo.js
+    ```
 
-- Note that modules for _models_ should be named singularly.
+-   Note that modules for _models_ should be named singularly.
 
 ---
 
@@ -410,33 +396,23 @@ Options:
 
 <br>
 
-- Here's the code from yesterday, just slightly refactored:
+-   Here's the code from yesterday, just slightly refactored:
 
-      	```js
-      	const todos = [
-      	  {todo: 'Feed Dogs', done: true},
-      	  {todo: 'Learn Express', done: false},
-      	  {todo: 'Buy Milk', done: false}
-      	];
+    ```js
+    const todos = [
+        { todo: "Feed Dogs", done: true },
+        { todo: "Learn Express", done: false },
+        { todo: "Buy Milk", done: false }
+    ];
 
-      	module.exports = {
-      	  getAll
-      	};
+    const getAll = () => {
+        return todos;
+    };
 
-      	function getAll() {
-      	  return todos;
-      	}
-      	```
-
----
-
-#### To-Do Refactor - Routing
-
-<br>
-
-- Since we need a router for our **todos** resource and don't need the **routes/users.js** router module that Express Generator created, we'll modify it instead of having it lay around unused.
-
-- First, rename the **routes/users.js** route module to a name that's more appropriate for our resource - **routes/todos.js**.
+    module.exports = {
+        getAll
+    };
+    ```
 
 ---
 
@@ -444,18 +420,9 @@ Options:
 
 <br>
 
-- The renaming of **routes/users.js** to **routes/todos.js** requires a couple of changes in **server.js**; both when the router module is being _required_, and when it's being _mounted_:
+-   Since we need a router for our **todos** resource and don't need the **routes/users.js** router module that Express Generator created, we'll modify it instead of having it lay around unused.
 
-      	```js
-      	// around line 8
-      	var todosRouter = require('./routes/todos');
-      	```
-      	and
-
-      	```js
-      	// around line 23
-      	app.use('/todos', todosRouter);
-      	```
+-   First, rename the **routes/users.js** route module to a name that's more appropriate for our resource - **routes/todos.js**.
 
 ---
 
@@ -463,33 +430,20 @@ Options:
 
 <br>
 
-- The following is the **index** route code for the to-dos we used yesterday.
+-   The renaming of **routes/users.js** to **routes/todos.js** requires a couple of changes in **server.js**; both when the router module is being _required_, and when it's being _mounted_:
 
-- Copy it into **routes/todos.js** below the existing route and then we'll refactor it:
+    ```js
+    // around line 8
+    const todosRouter = require("./routes/todos");
+    ```
 
-      	```js
-      	// existing route above
+    and
 
-      	app.get('/todos', function(req, res) {
-      	  res.render('todos/index', {
-      	    todos: todoDb.getAll()
-      	  });
-      	});
-      	```
-
-- Now for the refactor...
-
----
-
-#### To-Do Refactor - Routing
-
-<br>
-
-- We'll delete that existing route in a moment, but first note its **path**...<br>**Why is it only a forward slash?**
-
-- Okay, update our route's path to `/` and delete the existing route.
-
-- Notice how we're calling `todoDb.getAll()` - this will currently cause an error...
+    ````js
+    // around line 23
+    app.use('/todos', todosRouter);
+        	```
+    ````
 
 ---
 
@@ -497,29 +451,21 @@ Options:
 
 <br>
 
-- We first need to require the Todo model as follows:
+-   The following is the **index** route code for the to-dos we used yesterday.
 
-      	```js
-      	var router = express.Router();
-      	// require the Todo model
-      	var Todo = require('../models/todo');
-      	```
+-   Copy it into **routes/todos.js** below the existing route and then we'll refactor it:
 
-- It's convention to name model variables singularly and with upper-camel-casing.
+    ```js
+    // existing route above
 
----
+    app.get("/todos", (req, res) => {
+        res.render("todos/index", {
+            todos: todoDb.getAll()
+        });
+    });
+    ```
 
-#### To-Do Refactor - Routing
-
-<br>
-
-- With the model required, **what do we need to change on this line of code?**
-
-      	```js
-      	todos: todoDb.getAll()
-      	```
-
-- Let's do it!
+-   Now for the refactor...
 
 ---
 
@@ -527,9 +473,51 @@ Options:
 
 <br>
 
-- There's another change that need to be made<br>**does anybody see it?**
+-   We'll delete that existing route in a moment, but first note its **path**...<br>**Why is it only a forward slash?**
 
-- Hint: What's that `app` object doing there?
+-   Okay, update our route's path to `/` and delete the existing route.
+
+-   Notice how we're calling `todoDb.getAll()` - this will currently cause an error...
+
+---
+
+#### To-Do Refactor - Routing
+
+<br>
+
+-   We first need to require the Todo model as follows:
+
+    ```js
+    const router = express.Router();
+    // require the Todo model
+    const Todo = require("../models/todo");
+    ```
+
+-   It's convention to name model variables singularly and with upper-camel-casing.
+
+---
+
+#### To-Do Refactor - Routing
+
+<br>
+
+-   With the model required, **what do we need to change on this line of code?**
+
+    ```js
+    todos: todoDb.getAll();
+    ```
+
+-   Let's do it!
+
+---
+
+#### To-Do Refactor - Routing
+
+<br>
+
+-   There's another change that need to be made<br>**does anybody see it?**
+
+-   Hint: What's that `app` object doing there?
 
 ---
 
@@ -537,33 +525,9 @@ Options:
 
 <br>
 
-- With the refactor complete, browsing to `localhost:3000/todos` should render the to-dos just like yesterday!
+-   With the refactor complete, browsing to `localhost:3000/todos` should render the to-dos just like yesterday!
 
-- Hey, let's add a link on **views/index.ejs** so that we can click it to see the to-dos instead of navigating via the address bar...
-
----
-
-#### To-Do Refactor
-
-<br>
-
-- In **views/index.ejs**:
-
-      	```html
-      	<!DOCTYPE html>
-      	<html>
-      	  <head>
-      	    <title><%= title %></title>
-      	    <link rel='stylesheet' href='/stylesheets/style.css' />
-      	  </head>
-      	  <body>
-      	    <h1><%= title %></h1>
-      	    <a href="/todos">To-Do List</a>
-      	  </body>
-      	</html>
-      	```
-
-- For styling, let's copy that `<link>` over to **todos/index.ejs** and...
+-   Hey, let's add a link on **views/index.ejs** so that we can click it to see the to-dos instead of navigating via the address bar...
 
 ---
 
@@ -571,15 +535,41 @@ Options:
 
 <br>
 
-- In **routes/index.js**, fix the value of the `title` property being passed to the view:
+-   In **views/index.ejs**:
 
-      	```js
-      	res.render('index', { title: 'Express To-Do' });
-      	```
+    ```html
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title><%= title %></title>
+            <link rel="stylesheet" href="/stylesheets/style.css" />
+        </head>
+        <body>
+            <h1><%= title %></h1>
+            <a href="/todos">To-Do List</a>
+        </body>
+    </html>
+    ```
 
-- That's better.
+-   For styling, let's copy that `<link>` over to **todos/index.ejs** and...
 
-- On to **controllers**...
+---
+
+#### To-Do Refactor
+
+<br>
+
+-   In **routes/index.js**, fix the value of the `title` property being passed to the view:
+
+    ```js
+    res.render("index", {
+        title: "Express To-Do"
+    });
+    ```
+
+-   That's better.
+
+-   On to **controllers**...
 
 ---
 
@@ -593,7 +583,7 @@ Options:
 
 <br>
 
-- In a web application that follows the MVC architectural pattern, **controllers**: - Use Models to perform CRUD (create, retrieve, update & delete) data operations. - Implement any additional application logic, often relying on other services and utility modules; and - Pass data to Views to be rendered then return the resulting markup to the browser.
+-   In a web application that follows the MVC architectural pattern, **controllers**: - Use Models to perform CRUD (create, retrieve, update & delete) data operations. - Implement any additional application logic, often relying on other services and utility modules; and - Pass data to Views to be rendered then return the resulting markup to the browser.
 
 ---
 
@@ -601,55 +591,9 @@ Options:
 
 <br>
 
-- Controllers are functions, but wait, we already wrote functions that perform those responsibilities in our route modules!
+-   Controllers are functions, but wait, we already wrote functions that perform those responsibilities in our route modules!
 
-- Exactly! Those functions _are_ controllers, we just need to separate our concerns, i.e., as a best practice, we need to separate the **route definitions** from their respective **controller functions**.
-
----
-
-#### Controllers
-
-<br>
-
-- Let's start by creating a controller module for the _todos_ resource:
-
-      	```sh
-      	$ touch controllers/todos.js
-      	```
-
-- Let's copy **just the function part** of the following route definition:
-
-      	```js
-      	router.get('/', function(req, res) {
-      	  res.render('todos/index', {
-      	    todos: Todo.getAll()
-      	  });
-      	});
-      	```
-
-- Paste that function inside of **controllers/todos.js**...
-
----
-
-#### Controllers
-
-- Let's export the `index` controller method (also know as a controller _action_)...
-
-- The pasted and fixed up code should look like:
-
-      	```js
-      	module.exports = {
-      	  index
-      	};
-
-      	function index(req, res) {
-      	  res.render('todos/index', {
-      	    todos: Todo.getAll()
-      	  });
-      	}
-      	```
-
-- The above is a good approach to follow when it comes to exporting functionality.
+-   Exactly! Those functions _are_ controllers, we just need to separate our concerns, i.e., as a best practice, we need to separate the **route definitions** from their respective **controller functions**.
 
 ---
 
@@ -657,13 +601,45 @@ Options:
 
 <br>
 
-- The router no longer needs the `Todo` model.
+-   Let's start by creating a controller module for the _todos_ resource:
 
-- But, the controller does! Let's go cut it from **routes/todos.js** and paste it at the top of **controllers/todos.js**:
+    ```sh
+    $ touch controllers/todos.js
+    ```
 
-      	```js
-      	var Todo = require('../models/todo');
-      	```
+-   Let's copy **just the function part** of the following route definition:
+
+    ```js
+    router.get("/", (req, res) => {
+        res.render("todos/index", {
+            todos: Todo.getAll()
+        });
+    });
+    ```
+
+-   Paste that function inside of **controllers/todos.js**...
+
+---
+
+#### Controllers
+
+-   Let's export the `index` controller method (also know as a controller _action_)...
+
+-   The pasted and fixed up code should look like:
+
+    ```js
+    const index = (req, res) => {
+        res.render("todos/index", {
+            todos: Todo.getAll()
+        });
+    };
+
+    module.exports = {
+        index
+    };
+    ```
+
+-   The above is a good approach to follow when it comes to exporting functionality.
 
 ---
 
@@ -671,20 +647,35 @@ Options:
 
 <br>
 
-- Back in **routes/todos.js**, we need to require the controller in order to have access to its actions (methods):
+-   The router no longer needs the `Todo` model.
 
-      	```js
-      	var todosCtrl = require('../controllers/todos');
-      	```
+-   But, the controller does! Let's go cut it from **routes/todos.js** and paste it at the top of **controllers/todos.js**:
 
-- Now, the refactor:
+    ```js
+    const Todo = require("../models/todo");
+    ```
 
-      	```js
-      	router.get('/', todosCtrl.index);
-      	```
-      	How clean is that?!?!
+---
 
-- Refresh and everything should be hunky-dory!
+#### Controllers
+
+<br>
+
+-   Back in **routes/todos.js**, we need to require the controller in order to have access to its actions (methods):
+
+    ```js
+    const todosCtrl = require("../controllers/todos");
+    ```
+
+-   Now, the refactor:
+
+    ```js
+    router.get("/", todosCtrl.index);
+    ```
+
+    How clean is that?!?!
+
+-   Refresh and everything should be hunky-dory!
 
 ---
 
@@ -696,11 +687,11 @@ Options:
 
 <br>
 
-- Notice how we now have the following for the **_todos_ resource**: - **models/todo.js** - **views/todos** (directory) - **controllers/todos.js** - **routes/todos.js**
+-   Notice how we now have the following for the **_todos_ resource**: - **models/todo.js** - **views/todos** (directory) - **controllers/todos.js** - **routes/todos.js**
 
-- Each data _resource_ should receive the same treatment.
+-   Each data _resource_ should receive the same treatment.
 
-- Note that resource names are pluralized except for the model.
+-   Note that resource names are pluralized except for the model.
 
 ---
 
@@ -712,11 +703,11 @@ Options:
 
 <br>
 
-- In our web apps, we will often need to pass information, such as an identifier for a certain data resource, in the **path** of the HTTP request.
+-   In our web apps, we will often need to pass information, such as an identifier for a certain data resource, in the **path** of the HTTP request.
 
-- **URL Parameters**, also known as **Route Parameters**, just like parameters in functions, provide a way for data to be passed in to the router & controller via the URL of the request.
+-   **URL Parameters**, also known as **Route Parameters**, just like parameters in functions, provide a way for data to be passed in to the router & controller via the URL of the request.
 
-- Let's look at this analogy...
+-   Let's look at this analogy...
 
 ---
 
@@ -732,13 +723,13 @@ Options:
 
 <br>
 
-- In Express, we define route parameters in the path string using a colon, followed by the parameter name.
+-   In Express, we define route parameters in the path string using a colon, followed by the parameter name.
 
-- Let's say we want to view a details page for a resource.
+-   Let's say we want to view a details page for a resource.
 
-- Just like how we use an **index** route/action to list all of a resource, we will use a **show** route/action when displaying the details of a single resource.
+-   Just like how we use an **index** route/action to list all of a resource, we will use a **show** route/action when displaying the details of a single resource.
 
-- Let's add the functionality to view a single To Do...
+-   Let's add the functionality to view a single To Do...
 
 ---
 
@@ -750,23 +741,9 @@ Options:
 
 <br>
 
-- When adding functionality to your apps, start by identifying what route makes sense - this is usually based on [RESTful/Resourceful Routing conventions](https://gist.github.com/jim-clark/17908763db7bd3c403e6).
+-   When adding functionality to your apps, start by identifying what route makes sense - this is usually based on [RESTful/Resourceful Routing conventions](https://gist.github.com/jim-clark/17908763db7bd3c403e6).
 
-- We'll definitely be reviewing RESTful/Resourceful Routing later, in fact we just might quiz you on it one day - it's that important 😊
-
----
-
-#### Adding Show a To-Do Functionality
-
-<br>
-
-- According to REST, the "proper" route to display a<br>single To Do would be:
-
-      	```sh
-      	GET /todos/:id
-      	```
-
-- With the proper route identified, the next step is to create some UI that will send a request that matches that route...
+-   We'll definitely be reviewing RESTful/Resourceful Routing later.
 
 ---
 
@@ -774,18 +751,13 @@ Options:
 
 <br>
 
-- Let's refactor **todos/index.ejs** as follows:
+-   According to REST, the "proper" route to display a<br>single To Do would be:
 
-      	```html
-      	    <% todos.forEach(function(t, idx) { %>
-      	      <li>
-      	        <a href="/todos/<%= idx %>"><%= t.todo %></a>
-      	```
-      	Don't forget to add the `idx` parameter in the callback function
+    ```sh
+    GET /todos/:id
+    ```
 
-* Refresh the page and hover over the links. Looking at the bottom-left of the window will verify the paths look correct!
-
-* **Links always send an HTTP request using what HTTP method?**
+-   With the proper route identified, the next step is to create some UI that will send a request that matches that route...
 
 ---
 
@@ -793,27 +765,22 @@ Options:
 
 <br>
 
-- The UI is set to send the proper HTTP requests to the server.
+-   Let's refactor **todos/index.ejs** as follows:
 
-- However, clicking one of those links will display a<br>_Not Found 404_ error - this means that there is no route on the server that matches the HTTP request.
+    ```html
+    <% todos.forEach((t, idx) => { %>
+    <li>
+        <a href="/todos/<%= idx %>">
+            <%= t.todo %>
+        </a>
+    </li>
+    ```
 
-- Let's add one...
+    Don't forget to add the `idx` parameter in the callback function
 
----
+*   Refresh the page and hover over the links. Looking at the bottom-left of the window will verify the paths look correct!
 
-#### Adding Show a To-Do Functionality
-
-<br>
-
-- Add the **show** route below the **index** route as follows:
-
-      	```js
-      	router.get('/', todosCtrl.index);
-      	router.get('/:id', todosCtrl.show);
-      	```
-      	**The actual path is `/todos/:id` - right?**
-
-- Saving will crash the app because there is no `todosCtrl.show` being exported from the controller...
+*   **Links always send an HTTP request using what HTTP method?**
 
 ---
 
@@ -821,18 +788,11 @@ Options:
 
 <br>
 
-- Add the `show` action inside of **controllers/todos.js** and don't forget to export it!
+-   The UI is set to send the proper HTTP requests to the server.
 
-      	```js
-      	function show(req, res) {
-      	  res.render('todos/show', {
-      	    todo: Todo.getOne(req.params.id),
-      	    todoNum: parseInt(req.params.id) + 1
-      	  });
-      	}
-      	```
+-   However, clicking one of those links will display a<br>_Not Found 404_ error - this means that there is no route on the server that matches the HTTP request.
 
-- Express's `req.params` object will have a property for each **route parameter** defined, for example...
+-   Let's add one...
 
 ---
 
@@ -840,24 +800,16 @@ Options:
 
 <br>
 
-- A route defined like this:
+-   Add the **show** route below the **index** route as follows:
 
-      	```js
-      	router.get('/category/:catName/page/:pageNo', ...);
-      	```
-      	and a link like this:
+    ```js
+    router.get("/", todosCtrl.index);
+    router.get("/:id", todosCtrl.show);
+    ```
 
-      	```html
-      	<a href="/category/socks/page/2">Next Page</a>
-      	```
-      	would have a `req.params` available in the controller of:
+    **The actual path is `/todos/:id` - right?**
 
-      	```js
-      	console.log(req.params.catName) //=> "socks"
-      	console.log(req.params.pageNo) //=> "2"
-      	```
-
-- Note that all route param values are strings.
+-   Saving will crash the app because there is no `todosCtrl.show` being exported from the controller...
 
 ---
 
@@ -865,20 +817,18 @@ Options:
 
 <br>
 
-- Another refresh informs us that the `show` action in the controller is calling a `Todo.getOne` method that doesn't exist.
+-   Add the `show` action inside of **controllers/todos.js** and don't forget to export it!
 
-- Let's fix that error! In **models/todo.js**:
+    ```js
+    const show(req, res) => {
+        res.render('todos/show', {
+        todo: Todo.getOne(req.params.id),
+        todoNum: parseInt(req.params.id) + 1
+        });
+    }
+    ```
 
-      	```js
-      	module.exports = {
-      	  getAll,
-      	  getOne
-      	};
-
-      	function getOne(id) {
-      	  return todos[id];
-      	}
-      	```
+-   Express's `req.params` object will have a property for each **route parameter** defined, for example...
 
 ---
 
@@ -886,19 +836,67 @@ Options:
 
 <br>
 
-- Refresh and of course there's an error because we haven't created the **views/todos/show.ejs** that we're trying to render.
+-   A route defined like this:
 
-- Copy the boilerplate from **views/todos/index.ejs** and then add this:
+    ```js
+    router.get('/category/:catName/page/:pageNo', ...);
+    ```
 
-      	```html
-      	<body>
-      	  <h1>Todo #<%= todoNum %></h1>
-      	  <h3><%= todo.todo %></h3>
-      	  <h3>Complete: <%= todo.done ? 'Yes' : 'No' %></h3>
-      	</body>
-      	```
+    and a link like this:
 
-- Refresh - BAM!
+    ```html
+    <a href="/category/socks/page/2">Next Page</a>
+    ```
+
+    would have a `req.params` available in the controller of:
+
+    ```js
+    console.log(req.params.catName); //=> "socks"
+    console.log(req.params.pageNo); //=> "2"
+    ```
+
+-   Note that all route param values are strings.
+
+---
+
+#### Adding Show a To-Do Functionality
+
+<br>
+
+-   Another refresh informs us that the `show` action in the controller is calling a `Todo.getOne` method that doesn't exist.
+
+-   Let's fix that error! In **models/todo.js**:
+
+    ```js
+    const getOne = id => {
+        return todos[id];
+    };
+
+    module.exports = {
+        getAll,
+        getOne
+    };
+    ```
+
+---
+
+#### Adding Show a To-Do Functionality
+
+<br>
+
+-   Refresh and of course there's an error because we haven't created the **views/todos/show.ejs** that we're trying to render.
+
+-   Copy the boilerplate from **views/todos/index.ejs** and then add this:
+
+    ```html
+    <body>
+        <h1>Todo #<%= todoNum %></h1>
+        <h3><%= todo.todo %></h3>
+        <h3>Complete: <%= todo.done ? 'Yes' : 'No' %></h3>
+    </body>
+    ```
+
+-   Refresh - BAM!
 
 ---
 
