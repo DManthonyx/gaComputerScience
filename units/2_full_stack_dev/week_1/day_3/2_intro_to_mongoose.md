@@ -1,7 +1,5 @@
 [click here to view as a presentation](https://presentations.generalassemb.ly/c9d7cd25b1ec1e9b30915258b83cd9de#/1)
 
-<style style="visibility:hidden"> .reveal li {font-size: 32px;} .reveal ul ul li, .reveal ul ol li, .reveal ol ol li, .reveal ol ul li { font-size: 28px; } </style>
-
 ---
 
 # Intro To
