@@ -1,4 +1,4 @@
-[click here to view as a presentation]()
+[click here to view as a presentation](https://presentations.generalassemb.ly/c9d7cd25b1ec1e9b30915258b83cd9de#/1)
 
 <style style="visibility:hidden"> .reveal li {font-size: 32px;} .reveal ul ul li, .reveal ul ol li, .reveal ol ol li, .reveal ol ul li { font-size: 28px; } </style>
 
@@ -177,9 +177,9 @@
 
 1. **In your own words, describe the use case for Mongoose (what is it's purpose and when might you choose to use it?).**
 
-2. **A Mongoose ****\_**** is compiled into a Mongoose Model.**
+2. **A Mongoose \*\***\_\***\* is compiled into a Mongoose Model.**
 
-3. **We use a Mongoose ****\_**** to perform CRUD operations on a MongoDB.**.
+3. **We use a Mongoose \*\***\_\***\* to perform CRUD operations on a MongoDB.**.
 
 ---
 
@@ -262,9 +262,9 @@
 
 - Note that we aren't assigning our module to a variable. That's because there's no need to because:
 
-    - We're not exporting anything of use - why assign to a variable?
-    - Calling `require('./config/database')` is all it takes to make the code run.
-    - We can `require` Mongoose in any module we want and it will always refer to the same _configured_ Mongoose instance.
+  - We're not exporting anything of use - why assign to a variable?
+  - Calling `require('./config/database')` is all it takes to make the code run.
+  - We can `require` Mongoose in any module we want and it will always refer to the same _configured_ Mongoose instance.
 
 ---
 
@@ -656,14 +656,8 @@
 ```html
 <h2>Enter a New Movie</h2>
 <form action="/movies" method="POST">
-  <label
-    >Title:
-    <input type="text" name="title" /> </label
-  ><br />
-  <label
-    >Release Year:
-    <input type="text" name="releaseYear" /> </label
-  ><br />
+  <label>Title: <input type="text" name="title" /> </label><br />
+  <label>Release Year: <input type="text" name="releaseYear" /> </label><br />
   <label
     >MPAA Rating
     <select name="mpaaRating">
@@ -678,8 +672,7 @@
     <input type="text" name="cast" /> </label
   ><br />
   <label
-    >Now Showing:
-    <input type="checkbox" name="nowShowing" checked /> </label
+    >Now Showing: <input type="checkbox" name="nowShowing" checked /> </label
   ><br />
   <input type="submit" value="Add Movie" />
 </form>
@@ -891,6 +884,9 @@ function create(req, res) {
 
   if (req.body[key] === '') delete req.body[key];
   }
+
+  ```
+
   ```
 
 - Now if we don't enter a release year, the default will be set.
