@@ -1,4 +1,4 @@
-[click here to view as a presentation](https://presentations.generalassemb.ly/c9d7cd25b1ec1e9b30915258b83cd9de#/1)
+[click here to view as a presentation]()
 
 ---
 
@@ -13,15 +13,15 @@
 
 <br>
 
--   Describe the use case for Mongoose
+- Describe the use case for Mongoose
 
--   Define a basic Schema for a single Model
+- Define a basic Schema for a single Model
 
--   Create and Read documents using a Model
+- Create and Read documents using a Model
 
--   Define default values in a Schema
+- Define default values in a Schema
 
--   Define validations in a Schema
+- Define validations in a Schema
 
 ---
 
@@ -47,21 +47,21 @@
 
 <br>
 
--   `cd` to today's folder.
+- `cd` to today's folder.
 
--   Let's use Express Generator:
+- Let's use Express Generator:
 
-    ```sh
-    $ express -e mongoose-movies
-    ```
+  ```sh
+  $ express -e mongoose-movies
+  ```
 
-    then
+  then
 
-    ```sh
-    $ cd mongoose-movies && npm install
-    ```
+  ```sh
+  $ cd mongoose-movies && npm install
+  ```
 
--   Let's also change `app.js` to `server.js` - **what else do we have to do?**
+- Let's also change `app.js` to `server.js` - **what else do we have to do?**
 
 ---
 
@@ -73,11 +73,11 @@
 
 <br>
 
--   What is Mongoose?
+- What is Mongoose?
 
--   Sneak peak of some Mongoose code
+- Sneak peak of some Mongoose code
 
--   The big picture
+- The big picture
 
 ---
 
@@ -95,35 +95,11 @@
 
 <br>
 
--   **Mongoose** is the most popular way to perform CRUD operations on a MongoDB database.
+- **Mongoose** is the most popular way to perform CRUD operations on a MongoDB database.
 
--   Mongoose is called an **Object Document Mapper (ODM)** because it maps object-oriented JavaScript to MongoDB _documents_.
+- Mongoose is called an **Object Document Mapper (ODM)** because it maps object-oriented JavaScript to MongoDB _documents_.
 
--   Mongoose makes it easier to perform CRUD using object-oriented JavaScript instead of working directly MongoDB.
-
----
-
-#### What is Mongoose?
-
-<br>
-
--   Let's check out the landing page for Mongoose and see what it has to say for itself...
-
-    <a href="http://mongoosejs.com/index.html" target="_blank">Mongoose Homepage</a>
-
----
-
-#### What is Mongoose?
-
--   According to Mongoose's homepage:
-
-    _"Mongoose provides a straight-forward, **schema-based** solution to model your application data..."_
-
--   Wait a minute, what's with this "schema" business, isn't MongoDB schema-less?
-
--   Well, yes it is, however, it turns out that the vast majority of applications benefit when their data conforms to a defined structure (schema).
-
--   Mongoose allows us to define schemas and ensures that documents conform to them.
+- Mongoose makes it easier to perform CRUD using object-oriented JavaScript instead of working directly MongoDB.
 
 ---
 
@@ -131,7 +107,31 @@
 
 <br>
 
--   Mongoose also provides lots of other useful functionality: - Default property values - Validation - Automatic related model population via the `populate` method - _Virtual properties_ - create properties like "fullName" that are not persisted in the database - Custom _Instance methods_ which operate on a document - _Static methods_ which operate on the entire collection - `pre` and `post` event lifecycle hooks (Mongoose "middleware")
+- Let's check out the landing page for Mongoose and see what it has to say for itself...
+
+  <a href="http://mongoosejs.com/index.html" target="_blank">Mongoose Homepage</a>
+
+---
+
+#### What is Mongoose?
+
+- According to Mongoose's homepage:
+
+  _"Mongoose provides a straight-forward, **schema-based** solution to model your application data..."_
+
+- Wait a minute, what's with this "schema" business, isn't MongoDB schema-less?
+
+- Well, yes it is, however, it turns out that the vast majority of applications benefit when their data conforms to a defined structure (schema).
+
+- Mongoose allows us to define schemas and ensures that documents conform to them.
+
+---
+
+#### What is Mongoose?
+
+<br>
+
+- Mongoose also provides lots of other useful functionality: - Default property values - Validation - Automatic related model population via the `populate` method - _Virtual properties_ - create properties like "fullName" that are not persisted in the database - Custom _Instance methods_ which operate on a document - _Static methods_ which operate on the entire collection - `pre` and `post` event lifecycle hooks (Mongoose "middleware")
 
 ---
 
@@ -139,7 +139,7 @@
 
 <br>
 
--   Here is a big picture overview of the purpose of Mongoose's **Schema** and **Model** components:
+- Here is a big picture overview of the purpose of Mongoose's **Schema** and **Model** components:
 
 <img src="https://i.imgur.com/Q6A7KTQ.png" width="900">
 
@@ -147,26 +147,26 @@
 
 #### Big Picture Example
 
--   Assuming the following schema:
+- Assuming the following schema:
 
-    ```js
-    const postSchema = new mongoose.Schema({
-        content: String
-    });
-    ```
+  ```js
+  const postSchema = new mongoose.Schema({
+    content: String,
+  })
+  ```
 
--   It can be compiled into a model and that model exported like this:
+- It can be compiled into a model and that model exported like this:
 
-    ```js
-    module.exports = mongoose.model('Post', postSchema);
-    ```
+  ```js
+  module.exports = mongoose.model('Post', postSchema)
+  ```
 
--   The model can then be required and used to perform CRUD on the `posts` collection in the MongoDB:
+- The model can then be required and used to perform CRUD on the `posts` collection in the MongoDB:
 
-    ```js
-    const Post = require('./models/post');
-    Post.create({content: 'Amazing post...'});
-    ```
+  ```js
+  const Post = require('./models/post')
+  Post.create({ content: 'Amazing post...' })
+  ```
 
 ---
 
@@ -202,41 +202,13 @@
 
 <br>
 
--   Installing the Mongoose package is straight forward:
+- Installing the Mongoose package is straight forward:
 
-    ```sh
-    $ npm i mongoose
-    ```
-    Note: `i` is a shortcut for `install`
+  ```sh
+  $ npm i mongoose
+  ```
 
----
-
-#### Configure Mongoose in a module
-
-<br>
-
--   We're going to create a separate module named `database.js` and put it in a folder named `config`:
-
-    ```sh
-    $ mkdir config
-    $ touch config/database.js
-    ```
-
----
-
-#### Configure Mongoose in a module
-
--   Then in `database.js`, let's connect to a database named `movies`:
-
-    ```js
-    const mongoose = require('mongoose');
-
-    mongoose.connect('mongodb://localhost/movies',
-        {useNewUrlParser: true, useCreateIndex: true}
-    );
-    ```
-
--   The `{useNewUrlParser: true, useCreateIndex: true}` options avoid deprecation warnings.
+  Note: `i` is a shortcut for `install`
 
 ---
 
@@ -244,14 +216,29 @@
 
 <br>
 
--   In order for the code in `database.js` to run and connect to the database, we must require it in `server.js`:
+- We're going to create a separate module named `database.js` and put it in a folder named `config`:
 
-    ```js
-    const logger = require('morgan');
+  ```sh
+  $ mkdir config
+  $ touch config/database.js
+  ```
 
-    // connect to the database with Mongoose
-    require('./config/database');
-    ```
+---
+
+#### Configure Mongoose in a module
+
+- Then in `database.js`, let's connect to a database named `movies`:
+
+  ```js
+  const mongoose = require('mongoose')
+
+  mongoose.connect('mongodb://localhost/movies', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  })
+  ```
+
+- The `{useNewUrlParser: true, useCreateIndex: true}` options avoid deprecation warnings.
 
 ---
 
@@ -259,11 +246,26 @@
 
 <br>
 
--   Note that we aren't assigning our module to a variable. That's because there's no need to because:
+- In order for the code in `database.js` to run and connect to the database, we must require it in `server.js`:
 
-    -   We're not exporting anything of use - why assign to a variable?
-    -   Calling `require('./config/database')` is all it takes to make the code run.
-    -   We can `require` Mongoose in any module we want and it will always refer to the same _configured_ Mongoose instance.
+  ```js
+  const logger = require('morgan')
+
+  // connect to the database with Mongoose
+  require('./config/database')
+  ```
+
+---
+
+#### Configure Mongoose in a module
+
+<br>
+
+- Note that we aren't assigning our module to a variable. That's because there's no need to because:
+
+  - We're not exporting anything of use - why assign to a variable?
+  - Calling `require('./config/database')` is all it takes to make the code run.
+  - We can `require` Mongoose in any module we want and it will always refer to the same _configured_ Mongoose instance.
 
 ---
 
@@ -271,9 +273,9 @@
 
 <br>
 
--   Time to check if our app starts up without errors...
+- Time to check if our app starts up without errors...
 
--   Ensure that the MongoDB engine is running. You will have to run `mongod` in a separate terminal session if you haven't already told MongoDB to start automatically with<br>`brew services start mongodb`.
+- Ensure that the MongoDB engine is running. You will have to run `mongod` in a separate terminal session if you haven't already told MongoDB to start automatically with<br>`brew services start mongodb`.
 
 ---
 
@@ -281,11 +283,11 @@
 
 <br>
 
--   Start our app:<br>`$ nodemon`
+- Start our app:<br>`$ nodemon`
 
--   Browse to:<br>`localhost:3000`
+- Browse to:<br>`localhost:3000`
 
--   No errors? Great! However, wouldn't it be nice to know that our connection to our database was successful? Sure it would...
+- No errors? Great! However, wouldn't it be nice to know that our connection to our database was successful? Sure it would...
 
 ---
 
@@ -293,30 +295,32 @@
 
 <br>
 
--   The Mongoose connection object inherits from Node's `EventEmitter` which allows us to listen to defined events.
+- The Mongoose connection object inherits from Node's `EventEmitter` which allows us to listen to defined events.
 
--   Let's listen to the `connected` event...
+- Let's listen to the `connected` event...
 
 ---
 
 #### Adding event listeners
 
--   Let's modify our _database.js_ module as follows:
+- Let's modify our _database.js_ module as follows:
 
-    ```js
-    const mongoose = require('mongoose');
-    mongoose.connect('mongodb://localhost/movies',
-        {useNewUrlParser: true, useCreateIndex: true});
+  ```js
+  const mongoose = require('mongoose')
+  mongoose.connect('mongodb://localhost/movies', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+  })
 
-    // shortcut to mongoose.connection object
-    const db = mongoose.connection;
+  // shortcut to mongoose.connection object
+  const db = mongoose.connection
 
-    db.on('connected', function() {
-    console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
-    });
-    ```
+  db.on('connected', function() {
+    console.log(`Connected to MongoDB at ${db.host}:${db.port}`)
+  })
+  ```
 
--   Check for the _Connected to MongoDb..._ message in the server terminal.
+- Check for the _Connected to MongoDb..._ message in the server terminal.
 
 ---
 
@@ -348,24 +352,16 @@
 
 <br>
 
--   Now that we are connected to the MongoDB engine, it's time to define our first schema.
+- Now that we are connected to the MongoDB engine, it's time to define our first schema.
 
--   So, where are we going to put our app's schemas and models? In their own folder - of course!
+- So, where are we going to put our app's schemas and models? In their own folder - of course!
 
--   The MVC design pattern influences our code organization:
+- The MVC design pattern influences our code organization:
 
-    ```sh
-    $ mkdir models
-    $ touch models/movie.js
-    ```
-
----
-
-#### Define a basic Schema for a _Movie_ model
-
-<br>
-
--   We will always have a single file per Mongoose Model where: 1. We define the schema, 2. Compile the schema into a model, and 3. Export that model.
+  ```sh
+  $ mkdir models
+  $ touch models/movie.js
+  ```
 
 ---
 
@@ -373,17 +369,25 @@
 
 <br>
 
--   In the schema/model module, we will always do this:
+- We will always have a single file per Mongoose Model where: 1. We define the schema, 2. Compile the schema into a model, and 3. Export that model.
 
-    ```js
-    const mongoose = require('mongoose');
-    // optional shortcut to the mongoose.Schema class
-    const Schema = mongoose.Schema;
-    ```
+---
 
--   Creating the shortcut to the `mongoose.Schema` class is optional but convenient when defining complex schemas.
+#### Define a basic Schema for a _Movie_ model
 
--   Now let's define our schema...
+<br>
+
+- In the schema/model module, we will always do this:
+
+  ```js
+  const mongoose = require('mongoose')
+  // optional shortcut to the mongoose.Schema class
+  const Schema = mongoose.Schema
+  ```
+
+- Creating the shortcut to the `mongoose.Schema` class is optional but convenient when defining complex schemas.
+
+- Now let's define our schema...
 
 ---
 
@@ -391,30 +395,20 @@
 
 <br>
 
--   Here's our basic _Movie_ schema:
+- Here's our basic _Movie_ schema:
 
-    ```js
-    const Schema = mongoose.Schema;
+  ```js
+  const Schema = mongoose.Schema
 
-    const movieSchema = new Schema({
+  const movieSchema = new Schema({
     title: String,
     releaseYear: Number,
     mpaaRating: String,
-    cast: [String]
-    });
-    ```
+    cast: [String],
+  })
+  ```
 
--   Note the `cast` property's type is an Array of Strings.
-
----
-
-#### Define a basic Schema
-
-<br>
-
--   Mongoose vocababulary: - A **property** may be referred to as a "**path**", or "**field**".
-
--   **💪 YOU DO:** - Add an additional property named `nowShowing` with a type of `Boolean` (make sure that it's uppercased so that it refers to JavaScript's built-in `Boolean` object wrapper).
+- Note the `cast` property's type is an Array of Strings.
 
 ---
 
@@ -422,29 +416,39 @@
 
 <br>
 
--   Awesome! We have defined a Mongoose schema!
+- Mongoose vocababulary: - A **property** may be referred to as a "**path**", or "**field**".
 
--   As we progress toward learning more about Mongoose, we will be adding more properties and functionality to the `movieSchema`.
+- **💪 YOU DO:** - Add an additional property named `nowShowing` with a type of `Boolean` (make sure that it's uppercased so that it refers to JavaScript's built-in `Boolean` object wrapper).
 
--   For now, let's take a look at the eight built-in types available...
+---
+
+#### Define a basic Schema
+
+<br>
+
+- Awesome! We have defined a Mongoose schema!
+
+- As we progress toward learning more about Mongoose, we will be adding more properties and functionality to the `movieSchema`.
+
+- For now, let's take a look at the eight built-in types available...
 
 ---
 
 #### Built-in Types for Properties
 
--   The types that we can assign to properties are known as `SchemaTypes`
+- The types that we can assign to properties are known as `SchemaTypes`
 
--   There are 8 types that we can specify for our properties: - **String** - **Number** - **Boolean** - **Date** - **mongoose.Schema.Types.ObjectId** - **mongoose.Schema.Types.Buffer** - **`[]` (Array)** - **mongoose.Schema.Types.Mixed**
+- There are 8 types that we can specify for our properties: - **String** - **Number** - **Boolean** - **Date** - **mongoose.Schema.Types.ObjectId** - **mongoose.Schema.Types.Buffer** - **`[]` (Array)** - **mongoose.Schema.Types.Mixed**
 
 ---
 
 #### Built-in Types for Properties
 
--   Notice that Mongoose uses a few types that are not built into JavaScript: - **mongoose.Schema.Types.ObjectId** - **mongoose.Schema.Types.Buffer** - **mongoose.Schema.Types.Mixed**
+- Notice that Mongoose uses a few types that are not built into JavaScript: - **mongoose.Schema.Types.ObjectId** - **mongoose.Schema.Types.Buffer** - **mongoose.Schema.Types.Mixed**
 
--   When we need to specify one of the above types, e.g., `ObjectId`, we will need to ensure that we access them through the object hierarchy.
+- When we need to specify one of the above types, e.g., `ObjectId`, we will need to ensure that we access them through the object hierarchy.
 
--   Defining that `Schema` shortcut variable, enables us to write `Schema.Types.ObjectId`, leaving off the `mongoose.`.
+- Defining that `Schema` shortcut variable, enables us to write `Schema.Types.ObjectId`, leaving off the `mongoose.`.
 
 ---
 
@@ -458,24 +462,24 @@
 
 #### Compiling Schemas into Models
 
--   Mongoose performs CRUD using a **Model**.
+- Mongoose performs CRUD using a **Model**.
 
--   Compiling a schema into a model is as easy as calling the `mongoose.model` method:
+- Compiling a schema into a model is as easy as calling the `mongoose.model` method:
 
-    ```js
-    const Schema = mongoose.Schema;
+  ```js
+  const Schema = mongoose.Schema
 
-    const movieSchema = new Schema({
+  const movieSchema = new Schema({
     title: String,
     releaseYear: Number,
     mpaaRating: String,
     cast: [String],
-    nowShowing: Boolean
-    });
+    nowShowing: Boolean,
+  })
 
-    // Compile the schema into a model and export it
-    module.exports = mongoose.model('Movie', movieSchema);
-    ```
+  // Compile the schema into a model and export it
+  module.exports = mongoose.model('Movie', movieSchema)
+  ```
 
 ---
 
@@ -483,11 +487,11 @@
 
 <br>
 
--   **There is a one-to-one mapping between Mongoose models and MongoDB collections**.
+- **There is a one-to-one mapping between Mongoose models and MongoDB collections**.
 
--   By default, the collection will be named as the pluralized version of the model in all lower-case.
+- By default, the collection will be named as the pluralized version of the model in all lower-case.
 
--   The collection name can be overridden when compiling the model, but it's uncommon to do so.
+- The collection name can be overridden when compiling the model, but it's uncommon to do so.
 
 ---
 
@@ -497,35 +501,13 @@
 
 #### Use a Model to Create data
 
--   Now that we have a model, we're ready to perform some CRUD!
+- Now that we have a model, we're ready to perform some CRUD!
 
--   First up is **creating** data.
+- First up is **creating** data.
 
--   We can use a Mongoose Model in two ways to create documents in the collection: - `var instance = new Model()`, then<br>`instance.save()`, or - `Model.create()`
+- We can use a Mongoose Model in two ways to create documents in the collection: - `var instance = new Model()`, then<br>`instance.save()`, or - `Model.create()`
 
--   Let's see how we can `create` a document in a Node REPL...
-
----
-
-#### Use a Model to Create data
-
-<br>
-
--   Warning, if you make a typo, you'll have to start over:
-
-    ```sh
-    $ node
-    > require('./config/database')
-    > const Movie = require('./models/movie')
-    > Movie.create({
-    ... title: 'Star Wars',
-    ... releaseYear: 1977
-    ... }, function(err, doc) {
-    ... console.log(doc);
-    ... })
-    ```
-
--   Logged out will be a document that looks something like...
+- Let's see how we can `create` a document in a Node REPL...
 
 ---
 
@@ -533,28 +515,21 @@
 
 <br>
 
--   Here's the newly created document:
+- Warning, if you make a typo, you'll have to start over:
 
-    ```js
-    { __v: 0,
-        title: 'Star Wars',
-        releaseYear: 1977,
-        _id: 57ea692bab09506a97e969ba,
-        cast: []
-    }
-    ```
+  ```sh
+  $ node
+  > require('./config/database')
+  > const Movie = require('./models/movie')
+  > Movie.create({
+  ... title: 'Star Wars',
+  ... releaseYear: 1977
+  ... }, function(err, doc) {
+  ... console.log(doc);
+  ... })
+  ```
 
--   The `__v` field is added by Mongoose to track versioning - ignore it.
-
----
-
-#### Use a Model to Create data
-
-<br>
-
--   Note that we did not provide a value for `nowShowing` so it was not created as a property in the document.
-
--   However, properties of type Array, are always initialized to empty arrays like `cast` was. This makes it easy to start pushing performers into it!
+- Logged out will be a document that looks something like...
 
 ---
 
@@ -562,7 +537,18 @@
 
 <br>
 
--   That was fun! Exit the REPL (`ctrl + C` twice) and let's see how we can use<br>`new` + `save` to create movie documents - but this time from within our app.
+- Here's the newly created document:
+
+  ```js
+  { __v: 0,
+      title: 'Star Wars',
+      releaseYear: 1977,
+      _id: 57ea692bab09506a97e969ba,
+      cast: []
+  }
+  ```
+
+- The `__v` field is added by Mongoose to track versioning - ignore it.
 
 ---
 
@@ -570,7 +556,9 @@
 
 <br>
 
--   As we build out our CRUD functionality, here is the process we will repeat: 1. Determine the verb + URI for the route. Use RESTful conventions whenever possible. 2. Add the UI (link and/or forms) to the view that will trigger the request. 3. Define the route in the appropriate router module for the request, mapping it to the `<controller>.<method>`. 4. Add the controller action/method and be sure to export it. 5. In the controller, perform necessary CRUD and either `render` (passing it the data) or `redirect`.
+- Note that we did not provide a value for `nowShowing` so it was not created as a property in the document.
+
+- However, properties of type Array, are always initialized to empty arrays like `cast` was. This makes it easy to start pushing performers into it!
 
 ---
 
@@ -578,15 +566,7 @@
 
 <br>
 
--   Using [our trusty routing chart](https://gist.github.com/jim-clark/17908763db7bd3c403e6), we find that to display a `new.ejs` view with a form for entering movies, the proper route will be:
-
-    ```sh
-    GET /movies/new
-    ```
-
--   Express generator stubbed up a `users.js` route file, rename the file to `movies.js`.
-
--   Due to the above renaming, we'll need to make a couple of changes in `server.js` - **what are they?**
+- That was fun! Exit the REPL (`ctrl + C` twice) and let's see how we can use<br>`new` + `save` to create movie documents - but this time from within our app.
 
 ---
 
@@ -594,20 +574,7 @@
 
 <br>
 
--   Inside of `routes/movies.js`, let's code our first route - responsible for showing a form for entering a movie:
-
-    ```js
-    const express = require('express');
-    const router = express.Router();
-    const moviesCtrl = require('../controllers/movies');
-
-    // GET /movies/new
-    router.get('/new', moviesCtrl.new);
-
-    module.exports = router;
-    ```
-
--   **💪 YOU DO: Pair up and create the controller and export the `new` action - we did this quite a bit yesterday...(hints next slide)**
+- As we build out our CRUD functionality, here is the process we will repeat: 1. Determine the verb + URI for the route. Use RESTful conventions whenever possible. 2. Add the UI (link and/or forms) to the view that will trigger the request. 3. Define the route in the appropriate router module for the request, mapping it to the `<controller>.<method>`. 4. Add the controller action/method and be sure to export it. 5. In the controller, perform necessary CRUD and either `render` (passing it the data) or `redirect`.
 
 ---
 
@@ -615,17 +582,15 @@
 
 <br>
 
--   Start by: - Creating `controllers/movies.js`
+- Using [our trusty routing chart](https://gist.github.com/jim-clark/17908763db7bd3c403e6), we find that to display a `new.ejs` view with a form for entering movies, the proper route will be:
 
--   The `new` action is just the first of several that are going to be exported from this module.
+  ```sh
+  GET /movies/new
+  ```
 
--   The code in the `new` action is pretty simple:
+- Express generator stubbed up a `users.js` route file, rename the file to `movies.js`.
 
-    ```js
-    const newMovie = (req, res) => {
-        res.render('movies/new');
-    }
-    ```
+- Due to the above renaming, we'll need to make a couple of changes in `server.js` - **what are they?**
 
 ---
 
@@ -633,48 +598,86 @@
 
 <br>
 
--   Now for the view.
+- Inside of `routes/movies.js`, let's code our first route - responsible for showing a form for entering a movie:
 
--   As we've discussed, organizing views for a certain model into a dedicated folder makes sense:
+  ```js
+  const express = require('express')
+  const router = express.Router()
+  const moviesCtrl = require('../controllers/movies')
 
-    ```
-    $ mkdir views/movies
-    $ touch views/movies/new.ejs
-    ```
+  // GET /movies/new
+  router.get('/new', moviesCtrl.new)
 
--   Next, add the HTML boilerplate to `new.ejs` and link in:
+  module.exports = router
+  ```
 
-    ```html
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    ```
+- **💪 YOU DO: Pair up and create the controller and export the `new` action - we did this quite a bit yesterday...(hints next slide)**
 
--   The next slide has our awesome but ugly form...
+---
+
+#### Use a Model to Create data
+
+<br>
+
+- Start by: - Creating `controllers/movies.js`
+
+- The `new` action is just the first of several that are going to be exported from this module.
+
+- The code in the `new` action is pretty simple:
+
+  ```js
+  const newMovie = (req, res) => {
+    res.render('movies/new')
+  }
+  ```
+
+---
+
+#### Use a Model to Create data
+
+<br>
+
+- Now for the view.
+
+- As we've discussed, organizing views for a certain model into a dedicated folder makes sense:
+
+  ```
+  $ mkdir views/movies
+  $ touch views/movies/new.ejs
+  ```
+
+- Next, add the HTML boilerplate to `new.ejs` and link in:
+
+  ```html
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  ```
+
+- The next slide has our awesome but ugly form...
 
 ---
 
 ```html
 <h2>Enter a New Movie</h2>
 <form action="/movies" method="POST">
-    <label>Title: <input type="text" name="title" /> </label><br />
-    <label>Release Year: <input type="text" name="releaseYear" /> </label><br />
-    <label
-        >MPAA Rating
-        <select name="mpaaRating">
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG-13">PG-13</option>
-            <option value="R">R</option>
-        </select> </label
-    ><br />
-    <label
-        >Cast (separate actors with commas):
-        <input type="text" name="cast" /> </label
-    ><br />
-    <label
-        >Now Showing:
-        <input type="checkbox" name="nowShowing" checked /> </label
-    ><br />
-    <input type="submit" value="Add Movie" />
+  <label>Title: <input type="text" name="title" /> </label><br />
+  <label>Release Year: <input type="text" name="releaseYear" /> </label><br />
+  <label
+    >MPAA Rating
+    <select name="mpaaRating">
+      <option value="G">G</option>
+      <option value="PG">PG</option>
+      <option value="PG-13">PG-13</option>
+      <option value="R">R</option>
+    </select> </label
+  ><br />
+  <label
+    >Cast (separate actors with commas):
+    <input type="text" name="cast" /> </label
+  ><br />
+  <label
+    >Now Showing: <input type="checkbox" name="nowShowing" checked /> </label
+  ><br />
+  <input type="submit" value="Add Movie" />
 </form>
 ```
 
@@ -684,15 +687,15 @@
 
 <br>
 
--   Note that we've already set the `action` & `method` attributes to match the proper RESTful route to submit the form to.
+- Note that we've already set the `action` & `method` attributes to match the proper RESTful route to submit the form to.
 
--   Let's define that route in **routes/movies.js**:
+- Let's define that route in **routes/movies.js**:
 
-    ```js
-    router.post('/', moviesCtrl.create);
-    ```
+  ```js
+  router.post('/', moviesCtrl.create)
+  ```
 
--   The next step is to write that `create` controller action...
+- The next step is to write that `create` controller action...
 
 ---
 
@@ -700,38 +703,38 @@
 
 <br>
 
--   In **controllers/movies.js** we're going to be using our `Movie` model, so we need to require it at the top:
+- In **controllers/movies.js** we're going to be using our `Movie` model, so we need to require it at the top:
 
-    ```js
-    const Movie = require('../models/movie');
-    ```
+  ```js
+  const Movie = require('../models/movie')
+  ```
 
--   The next slide shows how we use the `Movie` Model in the controller to create the movie submitted by the form.
+- The next slide shows how we use the `Movie` Model in the controller to create the movie submitted by the form.
 
--   We'll review it as we type it...
+- We'll review it as we type it...
 
 ---
 
--   Don't forget to export `create`, then write the function:
+- Don't forget to export `create`, then write the function:
 
 <br>
 
 ```js
 const create = (req, res) => {
-    // convert nowShowing's checkbox of nothing or "on" to boolean
-    req.body.nowShowing = !!req.body.nowShowing;
-    // remove whitespace next to commas
-    req.body.cast = req.body.cast.replace(/\s*,\s*/g, ",");
-    // split if it's not an empty string
-    if (req.body.cast) req.body.cast = req.body.cast.split(",");
-    const movie = new Movie(req.body);
-    movie.save((err) => {
-        // one way to handle errors
-        if (err) return res.render("movies/new");
-        console.log(movie);
-        // for now, redirect right back to new.ejs
-        res.redirect("/movies/new");
-    });
+  // convert nowShowing's checkbox of nothing or "on" to boolean
+  req.body.nowShowing = !!req.body.nowShowing
+  // remove whitespace next to commas
+  req.body.cast = req.body.cast.replace(/\s*,\s*/g, ',')
+  // split if it's not an empty string
+  if (req.body.cast) req.body.cast = req.body.cast.split(',')
+  const movie = new Movie(req.body)
+  movie.save(err => {
+    // one way to handle errors
+    if (err) return res.render('movies/new')
+    console.log(movie)
+    // for now, redirect right back to new.ejs
+    res.redirect('/movies/new')
+  })
 }
 ```
 
@@ -741,9 +744,9 @@ const create = (req, res) => {
 
 <br>
 
--   You should now be able to submit movies - congrats!
+- You should now be able to submit movies - congrats!
 
--   Now that we have created a movie or two, let's see how we use Mongoose models to read documents from a MongoDB collection...
+- Now that we have created a movie or two, let's see how we use Mongoose models to read documents from a MongoDB collection...
 
 ---
 
@@ -755,33 +758,35 @@ const create = (req, res) => {
 
 <br>
 
--   The querying ability of Mongoose is **very** capable. For example:
+- The querying ability of Mongoose is **very** capable. For example:
 
-    ```js
-    Movie.find({mpaaRating: 'PG'})
-        .where('releaseYear').lt(1970)
-        .where('cast').in('Bob Hope')
-        .sort('-title')
-        .limit(3)
-        .select('title releaseYear')
-        .exec(cb);
-    ```
+  ```js
+  Movie.find({ mpaaRating: 'PG' })
+    .where('releaseYear')
+    .lt(1970)
+    .where('cast')
+    .in('Bob Hope')
+    .sort('-title')
+    .limit(3)
+    .select('title releaseYear')
+    .exec(cb)
+  ```
 
--   But we're going to start with the basics :)
+- But we're going to start with the basics :)
 
 ---
 
 #### Use a Model to Read data
 
--   Here are the useful methods on a Model for querying data: - `find`: Returns an array of all documents matching the _query object_
-    `js Movie.find({mpaaRating: 'PG'}, function(err, movies) {...` - `findById`: Find a document based on it's `_id`
-    `js Movie.findById(req.params.id, function(err, movie) {...`
+- Here are the useful methods on a Model for querying data: - `find`: Returns an array of all documents matching the _query object_
+  `js Movie.find({mpaaRating: 'PG'}, function(err, movies) {...` - `findById`: Find a document based on it's `_id`
+  `js Movie.findById(req.params.id, function(err, movie) {...`
 
-    - `findOne`: Find the first document that matches the _query object_
+  - `findOne`: Find the first document that matches the _query object_
 
-    ```js
-    Movie.findOne({releaseYear: 2000}, (err, movie) => {...
-    ```
+  ```js
+  Movie.findOne({releaseYear: 2000}, (err, movie) => {...
+  ```
 
 ---
 
@@ -789,11 +794,11 @@ const create = (req, res) => {
 
 <br>
 
--   **💪 YOU DO - Pair up and display the list of movies!**: - Define the RESTful route - Write the controller `index` action to read and provide all movies to the view - Create an **index.ejs** view to display in an HTML table.
+- **💪 YOU DO - Pair up and display the list of movies!**: - Define the RESTful route - Write the controller `index` action to read and provide all movies to the view - Create an **index.ejs** view to display in an HTML table.
 
--   Hint: In the view, use the array `join` method to concatenate the names inside of the `cast` array.
+- Hint: In the view, use the array `join` method to concatenate the names inside of the `cast` array.
 
--   We'll review in 20 minutes.
+- We'll review in 20 minutes.
 
 ---
 
@@ -801,15 +806,15 @@ const create = (req, res) => {
 
 <br>
 
--   Now that we have an `index` view, let's update the `redirect` in the `create` action:
+- Now that we have an `index` view, let's update the `redirect` in the `create` action:
 
-    ```js
-        movie.save((err) => {
-        if (err) return res.render('movies/new');
-        console.log(movie);
-        res.redirect('/movies');  // update this line
-        });
-    ```
+  ```js
+  movie.save(err => {
+    if (err) return res.render('movies/new')
+    console.log(movie)
+    res.redirect('/movies') // update this line
+  })
+  ```
 
 ---
 
@@ -831,62 +836,61 @@ const create = (req, res) => {
 
 <br>
 
--   To add a default value, we need to switch from this simple property definition syntax:
+- To add a default value, we need to switch from this simple property definition syntax:
 
-    ```js
-    const movieSchema = new Schema({
-        title: String,
-        releaseYear: Number,
-    ...
-    ```
+  ```js
+  const movieSchema = new Schema({
+      title: String,
+      releaseYear: Number,
+  ...
+  ```
 
--   To this object syntax:
+- To this object syntax:
 
-    ```js
-    const movieSchema = new Schema({
+  ```js
+  const movieSchema = new Schema({
+  title: String,
+  releaseYear: {type: Number},
+  ...
+  ```
+
+---
+
+#### Modify the schema to add a default value
+
+- Now we can add a `default` key to specify a default value:
+
+  ```js
+  const movieSchema = new mongoose.Schema({
     title: String,
-    releaseYear: {type: Number},
-    ...
-    ```
+    releaseYear: { type: Number, default: 2000 },
+    mpaaRating: String,
+    cast: [String],
+    nowShowing: { type: Boolean, default: false },
+  })
+  ```
+
+- Silly example defaulting the release year to 2000 - yes. But that's how we can add a simple default value.
+
+- FYI, defaults for array types will not work - they require the use of Mongoose middleware to set default values.
 
 ---
 
 #### Modify the schema to add a default value
 
--   Now we can add a `default` key to specify a default value:
+- Test it out and we'll find that it didn't work for the `releaseYear` because `req.body.releaseYear` exists and this prevents the default from being assigned.
 
-    ```js
-    const movieSchema = new mongoose.Schema({
-        title: String,
-        releaseYear: {type: Number, default: 2000},
-        mpaaRating: String,
-        cast: [String],
-        nowShowing: {type: Boolean, default: false}
-    });
-    ```
+- We can fix this in the `create` action by deleting any property in `req.body` that is an empty string:
 
--   Silly example defaulting the release year to 2000 - yes. But that's how we can add a simple default value.
+  ```js
+  if (req.body.cast) req.body.cast = req.body.cast.split(',')
+  // remove empty properties
+  for (let key in req.body) {
+    if (req.body[key] === '') delete req.body[key]
+  }
+  ```
 
--   FYI, defaults for array types will not work - they require the use of Mongoose middleware to set default values.
-
----
-
-#### Modify the schema to add a default value
-
--   Test it out and we'll find that it didn't work for the `releaseYear` because `req.body.releaseYear` exists and this prevents the default from being assigned.
-
--   We can fix this in the `create` action by deleting any property in `req.body` that is an empty string:
-
-    ```js
-    if (req.body.cast) req.body.cast = req.body.cast.split(',');
-    // remove empty properties
-    for (let key in req.body) {
-    if (req.body[key] === '') delete req.body[key];
-    }
-
-    ```
-
--   Now if we don't enter a release year, the default will be set.
+- Now if we don't enter a release year, the default will be set.
 
 ---
 
@@ -894,30 +898,30 @@ const create = (req, res) => {
 
 <br>
 
--   You've seen how to add a simple default value, but we can also provide a function as well.
+- You've seen how to add a simple default value, but we can also provide a function as well.
 
--   The property's default would then be set to the value returned by the function!
+- The property's default would then be set to the value returned by the function!
 
 ---
 
 #### Use a function to provide a default value
 
--   For example, we can take our silly default for _releaseYear_ and make it just as silly like this:
+- For example, we can take our silly default for _releaseYear_ and make it just as silly like this:
 
-    ```js
-    const movieSchema = new mongoose.Schema({
-        title: String,
-        releaseYear: {
-        type: Number,
-        default: function() {
-        return new Date().getFullYear();
-        }
-        },
-        mpaaRating: String,
-        cast: [String],
-        nowShowing: {type: Boolean, default: true}
-    });
-    ```
+  ```js
+  const movieSchema = new mongoose.Schema({
+    title: String,
+    releaseYear: {
+      type: Number,
+      default: function() {
+        return new Date().getFullYear()
+      },
+    },
+    mpaaRating: String,
+    cast: [String],
+    nowShowing: { type: Boolean, default: true },
+  })
+  ```
 
 ---
 
@@ -925,17 +929,17 @@ const create = (req, res) => {
 
 <br>
 
--   Mongoose will add `createdAt` and add + update `updatedAt` fields automatically to every document if we set the `timestamps` option as follows in the schema:
+- Mongoose will add `createdAt` and add + update `updatedAt` fields automatically to every document if we set the `timestamps` option as follows in the schema:
 
-    ```js
-    const movieSchema = new mongoose.Schema({
-        ...
-    }, {
-        timestamps: true
-    });
-    ```
+  ```js
+  const movieSchema = new mongoose.Schema({
+      ...
+  }, {
+      timestamps: true
+  });
+  ```
 
--   This really comes in handy so it's recommended to add the `timestamps: true` option to all schemas by default.
+- This really comes in handy so it's recommended to add the `timestamps: true` option to all schemas by default.
 
 ---
 
@@ -947,32 +951,13 @@ const create = (req, res) => {
 
 <br>
 
--   Validations are used to prevent bogus data from being saved in the database.
+- Validations are used to prevent bogus data from being saved in the database.
 
--   There are several built-in validators we can use.
+- There are several built-in validators we can use.
 
--   However, endless flexibility is possible with custom asynchronous and synchronous validator functions and/or Mongoose middleware.
+- However, endless flexibility is possible with custom asynchronous and synchronous validator functions and/or Mongoose middleware.
 
--   We'll keep it simple at first...
-
----
-
-#### Defining validations for a Property
-
-<br>
-
--   Movies should not be allowed to be created without a `title`. Let's make it required:
-
-    ```js
-    const movieSchema = new mongoose.Schema({
-        title: {
-        type: String,
-        required: true
-        },
-        ...
-    ```
-
--   Now, if we try saving a movie without a `title` an error will be set and we'll render the `new` view instead of being redirected to the `index`.
+- We'll keep it simple at first...
 
 ---
 
@@ -980,40 +965,59 @@ const create = (req, res) => {
 
 <br>
 
--   For properties that are of type _Number_, we can specify<br>a `min` and `max` value:
+- Movies should not be allowed to be created without a `title`. Let's make it required:
 
-    ```js
-    const movieSchema = new mongoose.Schema({
-        ...
-        releaseYear: {
-        type: Number,
-        default: function() {
-            return new Date().getFullYear();
-        },
-        min: 1927
-        },
-        ...
-    ```
+  ```js
+  const movieSchema = new mongoose.Schema({
+      title: {
+      type: String,
+      required: true
+      },
+      ...
+  ```
 
--   No more silent movies!
+- Now, if we try saving a movie without a `title` an error will be set and we'll render the `new` view instead of being redirected to the `index`.
 
 ---
 
 #### Defining validations for a Property
 
--   For properties that are of type _String_, we have: - **`enum`**: String must be in the provided list - **`match`**: String must match the provided regular expression - **`maxlength`** and **`minlength`**: Take a guess :)
+<br>
 
--   Here is how we use the `enum` validator:
+- For properties that are of type _Number_, we can specify<br>a `min` and `max` value:
 
-    ```js
-    const movieSchema = new mongoose.Schema({
-        ...
-        mpaaRating: {
-        type: String,
-        enum: ['G', 'PG', 'PG-13', 'R']
-        },
-        ...
-    ```
+  ```js
+  const movieSchema = new mongoose.Schema({
+      ...
+      releaseYear: {
+      type: Number,
+      default: function() {
+          return new Date().getFullYear();
+      },
+      min: 1927
+      },
+      ...
+  ```
+
+- No more silent movies!
+
+---
+
+#### Defining validations for a Property
+
+- For properties that are of type _String_, we have: - **`enum`**: String must be in the provided list - **`match`**: String must match the provided regular expression - **`maxlength`** and **`minlength`**: Take a guess :)
+
+- Here is how we use the `enum` validator:
+
+  ```js
+  const movieSchema = new mongoose.Schema({
+      ...
+      mpaaRating: {
+      type: String,
+      enum: ['G', 'PG', 'PG-13', 'R']
+      },
+      ...
+  ```
 
 ---
 
@@ -1021,11 +1025,11 @@ const create = (req, res) => {
 
 <br>
 
--   Mongoose is the go to when it comes to working with a MongoDB.
+- Mongoose is the go to when it comes to working with a MongoDB.
 
--   We define Mongoose **schemas**, which are then compiled using the `mongoose.model` method into **Models**.
+- We define Mongoose **schemas**, which are then compiled using the `mongoose.model` method into **Models**.
 
--   We use a Model to perform all CRUD for a given MongoDB collection.
+- We use a Model to perform all CRUD for a given MongoDB collection.
 
 ---
 
@@ -1047,4 +1051,4 @@ const create = (req, res) => {
 
 <br>
 
--   [Official MongooseJS Documentation](http://mongoosejs.com/)
+- [Official MongooseJS Documentation](http://mongoosejs.com/)
