@@ -1037,7 +1037,7 @@ const create = (req, res) => {
 
 <br>
 
-<p>Take a couple of minutes to review in case you get picked!</p>
+<p>Take a couple of minutes to review in case you get stuck!</p>
 
 1. **True or False: In our code, a document's structure is _defined_ in a Mongoose model.**
 
