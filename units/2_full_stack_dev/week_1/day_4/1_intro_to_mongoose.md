@@ -1,4 +1,4 @@
-[click here to view as a presentation]()
+[click here to view as a presentation](https://presentations.generalassemb.ly/fac6f6d61071ccb8cb3d54d9e2230c03#/1)
 
 ---
 
