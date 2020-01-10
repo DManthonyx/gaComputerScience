@@ -8,7 +8,7 @@ const index = (req, res) => {
   });
 }
 
-const show = (req, res) {
+const show = (req, res) => {
   Movie.findById(req.params.id, (err, movie) => {
     res.render('movies/show', { 
       title: 'Movie Detail', 
