@@ -1,6 +1,4 @@
-var Movie = require('../models/movie');
-
-
+const Movie = require('../models/movie');
 
 const index(req, res) => {
   Movie.find({}, (err, movies) => {
