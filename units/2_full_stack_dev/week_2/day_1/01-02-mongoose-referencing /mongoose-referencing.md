@@ -1,4 +1,4 @@
-[click here to view as a presentation]()
+[click here to view as a presentation](https://presentations.generalassemb.ly/6e133a4c570823d4df5c66080727e597#/1)
 
 <link href="https://gist.githubusercontent.com/jim-clark/6919052ab15de680c120907d223c31b5/raw/9eedb5e3c01352b9ccda7264227f253be56a08b7/slide.css">
 
@@ -130,6 +130,7 @@ $ node
 ... console.log(movies)
 ... })
 ```
+
 The `find` method returns a **Query** object that is first logged, followed by the _movie_ docs. Press enter to return to the prompt.
 
 ---
@@ -205,21 +206,24 @@ The `find` method returns a **Query** object that is first logged, followed by t
 - We'll review the schema for the `Performer` Model as we type it:
 
 ```js
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const performerSchema = new Schema({
-name: {
-type: String,
-required: true,
-unique: true
-},
-born: Date
-}, {
-timestamps: true
-});
+const performerSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    born: Date,
+  },
+  {
+    timestamps: true,
+  }
+)
 
-module.exports = mongoose.model('Performer', performerSchema);
+module.exports = mongoose.model('Performer', performerSchema)
 ```
 
 - We want to _try_ to prevent duplicate _performers_ (more on this in a bit).
@@ -322,6 +326,7 @@ ref: 'Performer'
 <%- title === 'Add Performer' ? 'class="active"' : '' %>
 ADD PERFORMER</a>
 ```
+
 Yup, the same pattern as the other links.
 
 ---
@@ -333,13 +338,13 @@ Yup, the same pattern as the other links.
 - Clicking the **ADD PERFORMER** link is going to send a `GET /performers/new` request - now we need a route to map that HTTP request to code (controller action) in **routes/performers.js**:
 
 ```js
-const express = require('express');
-const router = express.Router();
-const performersCtrl = require('../controllers/performers');
+const express = require('express')
+const router = express.Router()
+const performersCtrl = require('../controllers/performers')
 
-router.get('/performers/new', performersCtrl.new);
+router.get('/performers/new', performersCtrl.new)
 
-module.exports = router;
+module.exports = router
 ```
 
 - As usual, the server won't be happy until we create and export that `new` action...
@@ -402,19 +407,20 @@ $ touch views/performers/new.ejs
 
 ```html
 <%- include('../partials/header') %>
-<p>Please first ensure that the Performer is not in the dropdown
-<select>
-<% performers.forEach(function(p) { %>
-<option><%= p.name %></option>
-<% }) %>
-</select>
+<p>
+  Please first ensure that the Performer is not in the dropdown
+  <select>
+    <% performers.forEach(function(p) { %>
+    <option><%= p.name %></option>
+    <% }) %>
+  </select>
 </p>
 <form id="add-performer-form" action="/performers" method="POST">
-<label>Name:</label>
-<input type="text" name="name">
-<label>Born:</label>
-<input type="date" name="born">
-<input type="submit" value="Add Performer">
+  <label>Name:</label>
+  <input type="text" name="name" />
+  <label>Born:</label>
+  <input type="date" name="born" />
+  <input type="submit" value="Add Performer" />
 </form>
 <%- include('../partials/footer') %>
 ```
@@ -429,20 +435,18 @@ $ touch views/performers/new.ejs
 #new-form *,
 #add-review-form *,
 #add-performer-form * {
-font-size: 20px;
-...
+  font-size: 20px;
+  ...;
 }
-...
-#add-review-form,
+... #add-review-form,
 #add-performer-form {
-display: grid;
-...
+  display: grid;
+  ...;
 }
-...
-#add-review-form input[type="submit"],
-#add-performer-form input[type="submit"] {
-width: 10rem;
-...
+... #add-review-form input[type='submit'],
+#add-performer-form input[type='submit'] {
+  width: 10rem;
+  ...;
 }
 ```
 
@@ -465,22 +469,20 @@ width: 10rem;
 - In **controllers/performers.js**:
 
 ```js
-
 const create = (req, res) => {
-
-// Hack to "fix" date formatting to prevent possible day off by 1
-// https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
-const s = req.body.born;
-req.body.born = `${s.substr(5,2)}-${s.substr(8,2)}-${s.substr(0,4)}`;
-Performer.create(req.body, (err, performer) => {
-res.redirect('/performers/new');
-});
+  // Hack to "fix" date formatting to prevent possible day off by 1
+  // https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
+  const s = req.body.born
+  req.body.born = `${s.substr(5, 2)}-${s.substr(8, 2)}-${s.substr(0, 4)}`
+  Performer.create(req.body, (err, performer) => {
+    res.redirect('/performers/new')
+  })
 }
 
 module.exports = {
-new: newPerformer,
-create
-};
+  new: newPerformer,
+  create,
+}
 ```
 
 - Okay, give a whirl 😊
@@ -504,11 +506,11 @@ create
 - This user story can be accomplished with a quick refactor in the `moviesCtrl.create` action in **controllers/movies/js**:
 
 ```js
-movie.save( err => {
-if (err) return res.redirect('/movies/new');
-// res.redirect('/movies');
-res.redirect(`/movies/${movie._id}`);
-});
+movie.save(err => {
+  if (err) return res.redirect('/movies/new')
+  // res.redirect('/movies');
+  res.redirect(`/movies/${movie._id}`)
+})
 ```
 
 - Don't forget to replace the single-quotes with back-ticks!
@@ -533,10 +535,11 @@ res.redirect(`/movies/${movie._id}`);
 
 ```js
 const show = (req, res) => {
-Movie.findById(req.params.id)
-.populate('cast').exec((err, movie) => {
-res.render('movies/show', { title: 'Movie Detail', movie });
-});
+  Movie.findById(req.params.id)
+    .populate('cast')
+    .exec((err, movie) => {
+      res.render('movies/show', { title: 'Movie Detail', movie })
+    })
 }
 ```
 
@@ -565,9 +568,9 @@ res.render('movies/show', { title: 'Movie Detail', movie });
 - First, we're going to need to access the `Performer` model, so require it at the top:
 
 ```js
-const Movie = require('../models/movie');
+const Movie = require('../models/movie')
 // require the Performer model
-const Performer = require('../models/performer');
+const Performer = require('../models/performer')
 ```
 
 - Now we're ready to refactor the `show` action...
@@ -579,23 +582,23 @@ const Performer = require('../models/performer');
 - We'll review as we refactor the code:
 
 ```js
-
 const show = (req, res) => {
-Movie.findById(req.params.id)
-.populate('cast').exec( (err, movie) => {
-// Performer.find({}).where('_id').nin(movie.cast)
-Performer.find(
-{_id: {$nin: movie.cast}},
-(err, performers) => {
-console.log(performers);
-res.render('movies/show', {
-title: 'Movie Detail', movie, performers
-});
-}
-);
-});
+  Movie.findById(req.params.id)
+    .populate('cast')
+    .exec((err, movie) => {
+      // Performer.find({}).where('_id').nin(movie.cast)
+      Performer.find({ _id: { $nin: movie.cast } }, (err, performers) => {
+        console.log(performers)
+        res.render('movies/show', {
+          title: 'Movie Detail',
+          movie,
+          performers,
+        })
+      })
+    })
 }
 ```
+
 The log will show we are retrieving the _performers_ - a good sign at this point.
 
 ---
@@ -645,13 +648,13 @@ The log will show we are retrieving the _performers_ - a good sign at this point
 
 ```css
 ul {
-margin: 0 0 1rem;
-padding: 0;
-list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
 }
 
 li {
-font-weight: bold;
+  font-weight: bold;
 }
 ```
 
@@ -666,8 +669,9 @@ font-weight: bold;
 - In **routes/performers.js**
 
 ```js
-router.post('/movies/:id/performers', performersCtrl.addToCast);
+router.post('/movies/:id/performers', performersCtrl.addToCast)
 ```
+
 `addToCast` - not a bad name, but you can use a different one if you want to
 
 ---
@@ -677,25 +681,24 @@ router.post('/movies/:id/performers', performersCtrl.addToCast);
 - Let's write that `addToCast` action in **controllers/performers.js**:
 
 ```js
-const Performer = require('../models/performer');
+const Performer = require('../models/performer')
 // add the Movie model
-const Movie = require('../models/movie');
-
+const Movie = require('../models/movie')
 
 const addToCast = (req, res) => {
-Movie.findById(req.params.id, (err, movie) => {
-movie.cast.push(req.body.performerId);
-movie.save( err => {
-res.redirect(`/movies/${movie._id}`);
-});
-});
+  Movie.findById(req.params.id, (err, movie) => {
+    movie.cast.push(req.body.performerId)
+    movie.save(err => {
+      res.redirect(`/movies/${movie._id}`)
+    })
+  })
 }
 
 module.exports = {
-new: newPerformer,
-create,
-addToCast
-};
+  new: newPerformer,
+  create,
+  addToCast,
+}
 ```
 
 ---
