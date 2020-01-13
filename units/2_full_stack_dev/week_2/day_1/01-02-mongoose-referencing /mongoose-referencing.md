@@ -91,19 +91,19 @@ $ npm install
 
 - Start a Node REPL:
 
-      	```sh
-      	$ node
-      	>
-      	```
+```sh
+$ node
+>
+```
 
 - Connect to the MongoDB database:
 
-      	```sh
-      	> require('./config/database')
-      	{}
-      	> Connected to MongoDB at localhost:27017
-      	// Press enter to return to the prompt
-      	```
+```sh
+> require('./config/database')
+{}
+> Connected to MongoDB at localhost:27017
+// Press enter to return to the prompt
+```
 
 ---
 
@@ -113,9 +113,9 @@ $ npm install
 
 - Load the `Movie` Model:
 
-      	```sh
-      	> const M = require('./models/movie')
-      	```
+```sh
+> const M = require('./models/movie')
+```
 
 - **Important:** If you make any changes to the Model, you'll have exit Node and start again.
 
@@ -125,12 +125,12 @@ $ npm install
 
 - Log all _movie_ docs:
 
-      	```sh
-      	> M.find({}, (e, movies) => {
-      	... console.log(movies)
-      	... })
-      	```
-      	The `find` method returns a **Query** object that is first logged, followed by the _movie_ docs. Press enter to return to the prompt.
+```sh
+> M.find({}, (e, movies) => {
+... console.log(movies)
+... })
+```
+The `find` method returns a **Query** object that is first logged, followed by the _movie_ docs. Press enter to return to the prompt.
 
 ---
 
@@ -150,11 +150,11 @@ $ npm install
 
 - Here's a way to delete all documents from a collection:
 
-      	```sh
-      	> M.deleteMany({}, (err, result) => console.log(result))
-      	...
-      	> { n: 3, ok: 1, deletedCount: 3 }
-      	```
+```sh
+> M.deleteMany({}, (err, result) => console.log(result))
+...
+> { n: 3, ok: 1, deletedCount: 3 }
+```
 
 - The _empty query object_ provided as the first argument matches all documents, so all documents were removed.
 
@@ -204,23 +204,23 @@ $ npm install
 
 - We'll review the schema for the `Performer` Model as we type it:
 
-      	```js
-      	const mongoose = require('mongoose');
-      	const Schema = mongoose.Schema;
+```js
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-      	const performerSchema = new Schema({
-      		name: {
-      			type: String,
-      			required: true,
-      			unique: true
-      		},
-      		born: Date
-      	}, {
-      		timestamps: true
-      	});
+const performerSchema = new Schema({
+name: {
+type: String,
+required: true,
+unique: true
+},
+born: Date
+}, {
+timestamps: true
+});
 
-      	module.exports = mongoose.model('Performer', performerSchema);
-      	```
+module.exports = mongoose.model('Performer', performerSchema);
+```
 
 - We want to _try_ to prevent duplicate _performers_ (more on this in a bit).
 
@@ -232,14 +232,14 @@ $ npm install
 
 - With the `Performer` Model created, we can now add back the `cast` property in `Movie`:
 
-      	```js
-      	reviews: [reviewSchema],
-      	// don't forget to add a comma above
-      	cast: [{
-      		type: Schema.Types.ObjectId,
-      		ref: 'Performer'
-      	}]
-      	```
+```js
+reviews: [reviewSchema],
+// don't forget to add a comma above
+cast: [{
+type: Schema.Types.ObjectId,
+ref: 'Performer'
+}]
+```
 
 - The property type of `ObjectId` **is always** used to implement **referencing**.
 
@@ -285,15 +285,15 @@ $ npm install
 
 - Here's the flow we've now followed several times when adding functionality to the app:
 
-      	- Identify the "proper" Route (Method + Path)
+- Identify the "proper" Route (Method + Path)
 
-      	- Create the UI that will send the request matching that route.
+- Create the UI that will send the request matching that route.
 
-      	- Define the route on the server and map it to the proper controller action (`index`, `show`, `new`, `create`, etc.).
+- Define the route on the server and map it to the proper controller action (`index`, `show`, `new`, `create`, etc.).
 
-      	- Code and export the controller action.
+- Code and export the controller action.
 
-      	- `res.render` a view in the case of a GET request, or `res.redirect` if data was changed.
+- `res.render` a view in the case of a GET request, or `res.redirect` if data was changed.
 
 ---
 
@@ -315,14 +315,14 @@ $ npm install
 
 - Let's add a new link in the nav bar in **partials/header.js**:
 
-      	```html
-      	<img src="/images/camera.svg">
-      	<!-- new menu link below -->
-      	<a href="/performers/new"
-      		<%- title === 'Add Performer' ? 'class="active"' : '' %>
-      		ADD PERFORMER</a>
-      	```
-      	Yup, the same pattern as the other links.
+```html
+<img src="/images/camera.svg">
+<!-- new menu link below -->
+<a href="/performers/new"
+<%- title === 'Add Performer' ? 'class="active"' : '' %>
+ADD PERFORMER</a>
+```
+Yup, the same pattern as the other links.
 
 ---
 
@@ -332,15 +332,15 @@ $ npm install
 
 - Clicking the **ADD PERFORMER** link is going to send a `GET /performers/new` request - now we need a route to map that HTTP request to code (controller action) in **routes/performers.js**:
 
-      	```js
-      	const express = require('express');
-      	const router = express.Router();
-      	const performersCtrl = require('../controllers/performers');
+```js
+const express = require('express');
+const router = express.Router();
+const performersCtrl = require('../controllers/performers');
 
-      	router.get('/performers/new', performersCtrl.new);
+router.get('/performers/new', performersCtrl.new);
 
-      	module.exports = router;
-      	```
+module.exports = router;
+```
 
 - As usual, the server won't be happy until we create and export that `new` action...
 
@@ -362,23 +362,23 @@ $ npm install
 
 - Inside of **controllers/performers.js** we go:
 
-      	```js
-      	var Performer = require('../models/performer');
+```js
+const Perform]er = require('../models/performer');
 
 
-    const newPerformer = (req, res) => {
-    	Performer.find({}, (err, performers) => {
-    		res.render('performers/new', {
-    			title: 'Add Performer',
-    			performers
-    		});
-    	})
-    }
+const newPerformer = (req, res) => {
+Performer.find({}, (err, performers) => {
+res.render('performers/new', {
+title: 'Add Performer',
+performers
+});
+})
+}
 
-    module.exports = {
-    	new: newPerformer
-    };
-    ```
+module.exports = {
+new: newPerformer
+};
+```
 
 ---
 
@@ -388,9 +388,9 @@ $ npm install
 
 - We'll need that `new` view that we just rendered:
 
-      	```sh
-      	$ touch views/performers/new.ejs
-      	```
+```sh
+$ touch views/performers/new.ejs
+```
 
 - The next slide has the markup...
 
@@ -400,24 +400,24 @@ $ npm install
 
 - Here's the markup for **performers/new.ejs**:
 
-      	```html
-      	<%- include('../partials/header') %>
-      	<p>Please first ensure that the Performer is not in the dropdown
-      		<select>
-      		<% performers.forEach(function(p) { %>
-      			<option><%= p.name %></option>
-      		<% }) %>
-      		</select>
-      	</p>
-      	<form id="add-performer-form" action="/performers" method="POST">
-      		<label>Name:</label>
-      		<input type="text" name="name">
-      		<label>Born:</label>
-      		<input type="date" name="born">
-      		<input type="submit" value="Add Performer">
-      	</form>
-      	<%- include('../partials/footer') %>
-      	```
+```html
+<%- include('../partials/header') %>
+<p>Please first ensure that the Performer is not in the dropdown
+<select>
+<% performers.forEach(function(p) { %>
+<option><%= p.name %></option>
+<% }) %>
+</select>
+</p>
+<form id="add-performer-form" action="/performers" method="POST">
+<label>Name:</label>
+<input type="text" name="name">
+<label>Born:</label>
+<input type="date" name="born">
+<input type="submit" value="Add Performer">
+</form>
+<%- include('../partials/footer') %>
+```
 
 ---
 
@@ -425,26 +425,26 @@ $ npm install
 
 - Find and update in **public/stylesheets/style.css**:
 
-      	```css
-      	#new-form *,
-      	#add-review-form *,
-      	#add-performer-form * {
-      		font-size: 20px;
-      		...
-      	}
-      	...
-      	#add-review-form,
-      	#add-performer-form {
-      		display: grid;
-      		...
-      	}
-      	...
-      	#add-review-form input[type="submit"],
-      	#add-performer-form input[type="submit"] {
-      		width: 10rem;
-      		...
-      	}
-      	```
+```css
+#new-form *,
+#add-review-form *,
+#add-performer-form * {
+font-size: 20px;
+...
+}
+...
+#add-review-form,
+#add-performer-form {
+display: grid;
+...
+}
+...
+#add-review-form input[type="submit"],
+#add-performer-form input[type="submit"] {
+width: 10rem;
+...
+}
+```
 
 ---
 
@@ -464,24 +464,24 @@ $ npm install
 
 - In **controllers/performers.js**:
 
-      	```js
+```js
 
-      	const create = (req, res) => {
+const create = (req, res) => {
 
-  // Hack to "fix" date formatting to prevent possible day off by 1
-  // https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
-  const s = req.body.born;
-  req.body.born = `${s.substr(5,2)}-${s.substr(8,2)}-${s.substr(0,4)}`;
-  Performer.create(req.body, (err, performer) => {
-  res.redirect('/performers/new');
-  });
-  }
+// Hack to "fix" date formatting to prevent possible day off by 1
+// https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
+const s = req.body.born;
+req.body.born = `${s.substr(5,2)}-${s.substr(8,2)}-${s.substr(0,4)}`;
+Performer.create(req.body, (err, performer) => {
+res.redirect('/performers/new');
+});
+}
 
-      	module.exports = {
-      		new: newPerformer,
-      		create
-      	};
-      	```
+module.exports = {
+new: newPerformer,
+create
+};
+```
 
 - Okay, give a whirl 😊
 
@@ -503,13 +503,13 @@ $ npm install
 
 - This user story can be accomplished with a quick refactor in the `moviesCtrl.create` action in **controllers/movies/js**:
 
-      	```js
-      	movie.save( err => {
-      		if (err) return res.redirect('/movies/new');
-      		// res.redirect('/movies');
-      		res.redirect(`/movies/${movie._id}`);
-      	});
-      	```
+```js
+movie.save( err => {
+if (err) return res.redirect('/movies/new');
+// res.redirect('/movies');
+res.redirect(`/movies/${movie._id}`);
+});
+```
 
 - Don't forget to replace the single-quotes with back-ticks!
 
@@ -531,14 +531,14 @@ $ npm install
 
 - Let's refactor the `moviesCtrl.show` action so that it will pass the movie with the _performer_ documents in its `cast` array instead of `ObjectIds`:
 
-      	```js
-      	const show = (req, res) => {
-      		Movie.findById(req.params.id)
-      		.populate('cast').exec((err, movie) => {
-      		res.render('movies/show', { title: 'Movie Detail', movie });
-      		});
-      	}
-      	```
+```js
+const show = (req, res) => {
+Movie.findById(req.params.id)
+.populate('cast').exec((err, movie) => {
+res.render('movies/show', { title: 'Movie Detail', movie });
+});
+}
+```
 
 - `populate`, the unicorn of Mongoose...
 
@@ -564,11 +564,11 @@ $ npm install
 
 - First, we're going to need to access the `Performer` model, so require it at the top:
 
-      	```js
-      	const Movie = require('../models/movie');
-      	// require the Performer model
-      	const Performer = require('../models/performer');
-      	```
+```js
+const Movie = require('../models/movie');
+// require the Performer model
+const Performer = require('../models/performer');
+```
 
 - Now we're ready to refactor the `show` action...
 
@@ -578,25 +578,25 @@ $ npm install
 
 - We'll review as we refactor the code:
 
-      	```js
+```js
 
-      	const show = (req, res) => {
-      		Movie.findById(req.params.id)
-      		.populate('cast').exec( (err, movie) => {
-      		// Performer.find({}).where('_id').nin(movie.cast)
-      		Performer.find(
-      		{_id: {$nin: movie.cast}},
-      		(err, performers) => {
-      		console.log(performers);
-      		res.render('movies/show', {
-      			title: 'Movie Detail', movie, performers
-      		});
-      		}
-      	);
-      		});
-      	}
-      	```
-      	The log will show we are retrieving the _performers_ - a good sign at this point.
+const show = (req, res) => {
+Movie.findById(req.params.id)
+.populate('cast').exec( (err, movie) => {
+// Performer.find({}).where('_id').nin(movie.cast)
+Performer.find(
+{_id: {$nin: movie.cast}},
+(err, performers) => {
+console.log(performers);
+res.render('movies/show', {
+title: 'Movie Detail', movie, performers
+});
+}
+);
+});
+}
+```
+The log will show we are retrieving the _performers_ - a good sign at this point.
 
 ---
 
@@ -613,25 +613,25 @@ $ npm install
 ---
 
 ```html
-  <div><%= movie.nowShowing ? 'Yes' : 'Nope' %></div>
-  <!-- start cast list -->
-  <div>Cast:</div>
-  <ul>
-    <%- movie.cast.map(p =>
-      `<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`
-    ).join('') %>
-  </ul>
-  <!-- end cast list -->
+<div><%= movie.nowShowing ? 'Yes' : 'Nope' %></div>
+<!-- start cast list -->
+<div>Cast:</div>
+<ul>
+<%- movie.cast.map(p =>
+`<li>${p.name} <small>${p.born.toLocaleDateString()}</small></li>`
+).join('') %>
+</ul>
+<!-- end cast list -->
 </section>
 
 <!-- add to cast form below -->
 <form id="add-per-to-cast" action="/movies/<%= movie._id%>/performers" method="POST">
-  <select name="performerId">
-    <%- performers.map(p =>
-      `<option value="${p._id}">${p.name}</option>`
-    ).join('') %>
-  </select>
-  <button type="submit">Add to Cast</button>
+<select name="performerId">
+<%- performers.map(p =>
+`<option value="${p._id}">${p.name}</option>`
+).join('') %>
+</select>
+<button type="submit">Add to Cast</button>
 </form>
 ```
 
@@ -643,17 +643,17 @@ $ npm install
 
 - Add this tidbit of CSS to clean up the cast list:
 
-      	```css
-      	ul {
-      		margin: 0 0 1rem;
-      		padding: 0;
-      		list-style: none;
-      	}
+```css
+ul {
+margin: 0 0 1rem;
+padding: 0;
+list-style: none;
+}
 
-      	li {
-      		font-weight: bold;
-      	}
-      	```
+li {
+font-weight: bold;
+}
+```
 
 ---
 
@@ -665,10 +665,10 @@ $ npm install
 
 - In **routes/performers.js**
 
-      	```js
-      	router.post('/movies/:id/performers', performersCtrl.addToCast);
-      	```
-      	`addToCast` - not a bad name, but you can use a different one if you want to
+```js
+router.post('/movies/:id/performers', performersCtrl.addToCast);
+```
+`addToCast` - not a bad name, but you can use a different one if you want to
 
 ---
 
@@ -676,27 +676,27 @@ $ npm install
 
 - Let's write that `addToCast` action in **controllers/performers.js**:
 
-      	```js
-      	const Performer = require('../models/performer');
-      	// add the Movie model
-      	const Movie = require('../models/movie');
+```js
+const Performer = require('../models/performer');
+// add the Movie model
+const Movie = require('../models/movie');
 
 
-    const addToCast = (req, res) => {
-    	Movie.findById(req.params.id, (err, movie) => {
-    	movie.cast.push(req.body.performerId);
-    	movie.save( err => {
-    		res.redirect(`/movies/${movie._id}`);
-    	});
-    	});
-    }
+const addToCast = (req, res) => {
+Movie.findById(req.params.id, (err, movie) => {
+movie.cast.push(req.body.performerId);
+movie.save( err => {
+res.redirect(`/movies/${movie._id}`);
+});
+});
+}
 
-    module.exports = {
-    	new: newPerformer,
-    	create,
-    	addToCast
-    };
-    ```
+module.exports = {
+new: newPerformer,
+create,
+addToCast
+};
+```
 
 ---
 
