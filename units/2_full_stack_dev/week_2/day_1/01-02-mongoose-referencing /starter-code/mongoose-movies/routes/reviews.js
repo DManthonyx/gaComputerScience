@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-var reviewsCtrl = require('../controllers/reviews');
+const express = require('express');
+const router = express.Router();
+const reviewsCtrl = require('../controllers/reviews');
 
 router.post('/movies/:id/reviews', reviewsCtrl.create);
 
