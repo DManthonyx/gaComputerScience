@@ -1,28 +1,35 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-var reviewSchema = new Schema({
-  content: String,
-  rating: {type: Number, min: 1, max: 5, default: 5}
-}, {
-  timestamps: true
-});
-
-var movieSchema = new Schema({
-  title: {
-    type: String,
-    required: true
+const reviewSchema = new Schema(
+  {
+    content: String,
+    rating: { type: Number, min: 1, max: 5, default: 5 },
   },
-  releaseYear: {
-    type: Number,
-    default: function () {
-      return new Date().getFullYear();
-    }
-  }, mpaaRating: String,
-  nowShowing: { type: Boolean, default: false },
-  reviews: [reviewSchema]
-}, {
-  timestamps: true
-});
+  {
+    timestamps: true,
+  },
+);
+
+const movieSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    releaseYear: {
+      type: Number,
+      default: function() {
+        return new Date().getFullYear();
+      },
+    },
+    mpaaRating: String,
+    nowShowing: { type: Boolean, default: false },
+    reviews: [reviewSchema],
+  },
+  {
+    timestamps: true,
+  },
+);
 
 module.exports = mongoose.model('Movie', movieSchema);
