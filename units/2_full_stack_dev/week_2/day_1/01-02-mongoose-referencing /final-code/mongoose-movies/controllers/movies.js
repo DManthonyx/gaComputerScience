@@ -13,7 +13,6 @@ const show = (req, res) => {
     .exec((err, movie) => {
       // Performer.find({}).where('_id').nin(movie.cast)
       Performer.find({ _id: { $nin: movie.cast } }).exec((err, performers) => {
-        console.log(performers)
         res.render('movies/show', {
           title: 'Movie Detail',
           movie,
