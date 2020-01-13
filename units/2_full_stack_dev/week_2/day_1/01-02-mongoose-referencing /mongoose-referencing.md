@@ -49,9 +49,9 @@
 
 - Install the node modules:
 
-	```
-	$ npm install
-	```
+      	```
+      	$ npm install
+      	```
 
 - Open the **`mongoose-movies`** folder in your code editor.
 
