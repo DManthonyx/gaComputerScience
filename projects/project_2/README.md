@@ -25,10 +25,16 @@ Additionally, **after next Friday's presentations,** you'll be required to take 
 - A **[Trello](https://trello.com/) board** with:
   ☐ **User Stories**, each moving from left to right in the following
   three lists in your board:<br> - **Ice Box**<br> - **Current/MVP**<br> - **Completed**<br>
-  <br>**User Stories** must follow the following template:<br>**_As a \<user role\>, I want \<feature\>, because \<reason\>._**<br>The _reason_ is optional if it's blatantly obvious.
+  <br>**User Stories** must follow the following template:
+
+  <br>**_As a \<user role\>, I want \<feature\>, because \<reason\>._**<br>
+
+  The _reason_ is optional if it's blatantly obvious.
   <br><br>Note: Prioritize your user stories within the Ice Box with your "wish
   list" stories at the bottom.
+
   ☐ **Wireframes of the main pages of functionality**, e.g. Landing Page, Posts Index Page, Favorite Posts Page, Add Post Page, etc.
+
   ☐ An **ERD** showing the attributes of each model (or schema in the case of embedding) and the associations between them. Here's a [YouTube video to show you how](https://www.youtube.com/watch?v=QpdhBUYk7Kk).
 
 ### Presentation - Next Friday:
