@@ -4,7 +4,7 @@
 
 ## Intro
 
-Now that you know how to make AJAX calls using the Fetch API, time for a little practice making AJAX calls to a popular API - [OMDb](http://www.omdbapi.com/).
+Now that you know how to make AJAX calls using the Fetch API, time for a little practice making AJAX calls to a popular API - [TMDB](https://www.themoviedb.org/?language=en-US).
 
 > This lab is **not a deliverable**
 
@@ -12,13 +12,13 @@ Now that you know how to make AJAX calls using the Fetch API, time for a little 
 
 Create a new HTML, CSS, JS Repl and name it "AJAX Lab".
 
-Browse [here](http://www.omdbapi.com/apikey.aspx) to obtain an API Key used to access the OMDb API. Be sure to select the FREE account type, which includes 1,000 calls the API daily.
+Browse [here](https://www.themoviedb.org/?language=en-US) to obtain an API Key used to access the TMDB API. Be sure to select the FREE account type, which includes 1,000 calls the API daily.
 
 ## Requirements
 
 **All layout and styling for this lab is of your choosing.**
 
-The overall requirement of this lab is to create a Single-Page App (SPA) that uses `fetch` to consume the OMDb API and display the results.
+The overall requirement of this lab is to create a Single-Page App (SPA) that uses `fetch` to consume the TMDB API and display the results.
 
 Implement the following **user stories**:
 
